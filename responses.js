@@ -139,7 +139,7 @@ const pdfResponse = {
     {
       name: "pdfconverter",
       label: "Select image to be changed",
-      placeholder: "Please upload a image (.jpg, .jpeg, .png, ....)",
+      placeholder: "Please upload a image (.jpg, .jpeg, .png)",
       multiple:true,
       mandatory: true,
       type: "file",
@@ -160,7 +160,7 @@ const grayScaleResponse = {
     {
       name: "grayscale",
       label: "Select image to be changed",
-      placeholder: "Please upload a image (.jpg, .jpeg, .png, ....)",
+      placeholder: "Please upload a image (.jpg, .jpeg, .png, ...)",
       mandatory: true,
       type: "file",
     },
@@ -208,7 +208,38 @@ const ImageResponse = (name,url) => {
     ],
   };
 };
-
+const pdfResultResponse =(name,url)=>{
+return {
+  text: `# ${name}`,
+  slides: [
+    {
+      type: "text",
+      title: "ImageToolKit",
+      buttons: [
+        {
+          label: "Open PDF",
+          type: "+",
+          action: {
+            type: "open.url",
+            data: { web: url },
+          },
+        },
+      ],
+      data: "Converted PDF...",
+    },
+    {
+      type: "text",
+      title: "",
+      data: "if it doesn't work...\nwait for few seconds, PDF is rendering",
+    },
+    {
+      type:"text",
+      title:"note",
+      data:"The Larger the image size => more the waiting time\n*It is recomended to compress images before converting into PDF*"
+    }
+  ],
+};
+}
 const errorResponse = {
   text: "# Error",
   slides: [
@@ -227,5 +258,6 @@ module.exports = {
   grayScaleResponse,
   ImageResponse,
   errorResponse,
-  pdfResponse
+  pdfResponse,
+  pdfResultResponse
 };
