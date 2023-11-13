@@ -1,6 +1,6 @@
 const help = () => {
   const response = {
-    text: "Help",
+    text: "# Help",
     slides: [
       {
         type: "text",
