@@ -236,4 +236,4 @@ const helpResponse = {
       },
     ],
   };
-export {helpResponse,optionsResponse,converterResponse,compresserResponse,grayScaleResponse,converterImageResponse,compresserImageResponse,grayscaleImageResponse,errorResponse} 
+module.exports = {helpResponse,optionsResponse,converterResponse,compresserResponse,grayScaleResponse,converterImageResponse,compresserImageResponse,grayscaleImageResponse,errorResponse} 
