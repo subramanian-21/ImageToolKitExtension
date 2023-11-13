@@ -10,7 +10,6 @@ const pdfConverter = async (req,uniqueName)=>{
             }
         }
       );
-     
       
       const pdfDoc = await PDFDocument.create();
     
