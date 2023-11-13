@@ -2,6 +2,10 @@ const converter = require("./imageTools/imageConverter");
 const compresser = require("./imageTools/imageCompresser");
 const serverUrl = require("./config");
 const grayscale = require("./imageTools/grayScale");
+const { PDFDocument } = require('pdf-lib')
+const axios = require('axios')
+const path = require('path')
+const fs = require('fs')
 const {
   helpResponse,
   optionsResponse,
@@ -9,10 +13,52 @@ const {
   compresserResponse,
   grayScaleResponse,
   errorResponse,
+  pdfResponse,
   ImageResponse,
 } = require("./responses");
 
+
 const controller = async (req, res) => {
+
+  if(req.body.params?.form?.values?.pdfconverter){
+    try{
+    const images = req.body?.params?.form?.values?.pdfconverter?.files.map(k=>k.url)
+    async function createPdf() {
+      const pdfDoc = await PDFDocument.create();
+      const page = pdfDoc.addPage();
+      async function image() {
+          const jpgUrl = './0.jpg';
+          const jpgImageBytes = await fetch(images[0]).then((res) => res.arrayBuffer());
+          const jpgImage = await pdfDoc.embedJpg(jpgImageBytes);
+         const {width,height} = jpgImage.scale(1)
+         page.setSize(width, height);
+
+    page.drawImage(jpgImage, {
+      x: 0,
+      y: 0,
+      width,
+      height,
+    });
+       console.log('done');
+      }
+
+      await image();
+      fs.writeFileSync('./public/output.pdf',await pdfDoc.save())
+  }
+  ;
+  createPdf()
+  const url = `${serverUrl}/output.pdf`;
+  const resp = ImageResponse("Image To PDF converter",url);
+
+  res.status(200).json({
+    output: resp,
+  });
+    }catch (error){
+      console.log(error)
+    }
+
+  }
+
   if (req.body.params?.form?.values?.converter) {
     try {
       const format = req.body.params.form?.values?.format.value;
@@ -102,6 +148,12 @@ const controller = async (req, res) => {
         });
         break;
       }
+      case "pdfconverter":{
+        const response = pdfResponse;
+        res.status(200).json({
+          output: response,
+        });
+      }
     }
   }
 
@@ -119,3 +171,63 @@ const controller = async (req, res) => {
   }
 };
 module.exports = controller;
+
+
+   // const page =  document.addPage()
+        // let image = fs.readFileSync(img)
+        // image = await document.embedJpg(image)
+        // const {width,height} = image.scale(1)
+        // image.scale(1)
+        // page.drawImage(img,{
+        //   x:page.getWidth() /2 -width /2,
+        //   y:page.getHeight()/2 -height /2
+        // })
+
+
+        // imStream.on("finish", async () => {
+
+        //   const page =  document.addPage()
+        //   let image = fs.readFileSync("./image.jpeg")
+        //   image = await document.embedJpg(image)
+        //   const {width,height} = image.scale(1)
+        //   image.scale(1)
+        //   page.drawImage(img,{
+  
+        //     x:page.getWidth() /2 -width /2,
+        //     y:page.getHeight()/2 -height /2
+        //   })
+  
+        // });
+
+
+
+
+/*
+        
+        let doc = await PDFDocument.create()
+    
+    
+    images.map(async (img,i)=>{
+     await axios.get(img, { responseType: "stream" }).then((response) => {
+        const imageLoc = path.join(__dirname,`${i}.jpg`)
+        const imStream = fs.createWriteStream(imageLoc);
+        response.data.pipe(imStream); 
+          imStream.on("finish", async () => {
+          console.log(i)
+
+          const page =  doc.addPage()
+          let imag = fs.readFileSync(`./${i}.jpg`)
+          console.log(imag)
+          imag = await doc.embedJpg(imag)
+          const {width,height} = imag.scale(1)
+          imag.scale(1)
+          page.drawImage(img,{
+            x:page.getWidth() /2 -width / 2,
+            y:page.getHeight()/2 -height /2
+          })
+          fs.writeFileSync('./public/output.pdf',await doc.save())
+        });
+        
+    });
+  })  
+*/
