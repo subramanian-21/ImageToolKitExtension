@@ -1,0 +1,31 @@
+{
+  "name": "imagetoolkit",
+  "version": "1.0.0",
+  "description": "Image utility extension for zoho cliq",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thugperfect/ImageToolKitExtension.git"
+  },
+  "keywords": [
+    "image",
+    "converter",
+    "compresser",
+    "grayscale",
+    "filter"
+  ],
+  "author": "Subramanian M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thugperfect/ImageToolKitExtension/issues"
+  },
+  "homepage": "https://github.com/thugperfect/ImageToolKitExtension#readme",
+  "dependencies": {
+    "axios": "^1.6.1",
+    "express": "^4.18.2",
+    "jimp": "^0.22.10"
+  }
+}
