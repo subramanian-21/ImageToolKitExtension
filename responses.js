@@ -156,6 +156,7 @@ const converterImageResponse = (url) => {
         buttons: [
           {
             label: "go to image",
+            type: "+",
             action: {
               type: "open.url",
               data: { web: url },
@@ -169,6 +170,11 @@ const converterImageResponse = (url) => {
         title: "",
         data: "if it doesn't work...\nwait for few seconds, Image is rendering",
       },
+      {
+        type:"text",
+        title:"hint",
+        data:"- click on 'go to image'\n- right click on image and click on 'save image as'"
+      }
     ],
   };
 };
@@ -182,6 +188,7 @@ const compresserImageResponse = (url) => {
         buttons: [
           {
             label: "go to image",
+            type: "+",
             action: {
               type: "open.url",
               data: { web: url },
@@ -195,6 +202,11 @@ const compresserImageResponse = (url) => {
         title: "",
         data: "if it doesn't work...\nwait for few seconds, Image is rendering",
       },
+      {
+        type:"text",
+        title:"hint",
+        data:"- click on 'go to image'\n- right click on image and click on 'save image as'"
+      }
     ],
   };
 };
@@ -208,6 +220,7 @@ const grayscaleImageResponse = (url) => {
         buttons: [
           {
             label: "go to image",
+            type: "+",
             action: {
               type: "open.url",
               data: { web: url },
@@ -221,6 +234,11 @@ const grayscaleImageResponse = (url) => {
         title: "",
         data: "if it doesn't work...\nwait for few seconds, Image is rendering",
       },
+      {
+        type:"text",
+        title:"hint",
+        data:"- click on 'go to image'\n- right click on image and click on 'save image as'"
+      }
     ],
   };
 };
