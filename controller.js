@@ -25,9 +25,10 @@ const controller = async (req, res) => {
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const format= 'pdf'
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
-      const pdf = await pdfConverter(req,uniqueName)
       const url = `${serverUrl}/${uniqueName}`;
       const resp = pdfResultResponse("Images To PDF converter", url)
+      const pdf = await pdfConverter(req,uniqueName)
+    
       res.status(200).json({
         output: resp,
       });
