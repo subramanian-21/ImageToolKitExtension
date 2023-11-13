@@ -152,7 +152,7 @@ const converterImageResponse = (url) => {
     slides: [
       {
         type: "text",
-        title: "imageToolKit",
+        title: "ImageToolKit",
         buttons: [
           {
             label: "go to image",
@@ -184,7 +184,7 @@ const compresserImageResponse = (url) => {
     slides: [
       {
         type: "text",
-        title: "imageToolKit",
+        title: "ImageToolKit",
         buttons: [
           {
             label: "go to image",
@@ -216,7 +216,7 @@ const grayscaleImageResponse = (url) => {
     slides: [
       {
         type: "text",
-        title: "imageToolKit",
+        title: "ImageToolKit",
         buttons: [
           {
             label: "go to image",
