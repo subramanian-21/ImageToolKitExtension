@@ -5,7 +5,7 @@ const jimp = require("jimp");
 
 const grayscale= async(req,uniqueName,format)=>{
     try{
-        const imageUrl = req.body.params.form?.values?.compresser.files.url;
+        const imageUrl = req.body.params.form?.values?.grayscale.files.url;
         const imageLoc = path.join(__dirname, `image.${format}`);   
         await axios.get(imageUrl, { responseType: "stream" }).then((response) => {
           const imStream = fs.createWriteStream(imageLoc);
