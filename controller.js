@@ -9,9 +9,7 @@ const {
   compresserResponse,
   grayScaleResponse,
   errorResponse,
-  converterImageResponse,
-  compresserImageResponse,
-  grayscaleImageResponse,
+  ImageResponse,
 } = require("./responses");
 
 const controller = async (req, res) => {
@@ -24,7 +22,7 @@ const controller = async (req, res) => {
 
       const convert = await converter(req, uniqueName);
       const url = `${serverUrl}/${uniqueName}`;
-      const resp = converterImageResponse(url);
+      const resp = ImageResponse("Image Format Converter",url);
 
       res.status(200).json({
         output: resp,
@@ -46,7 +44,7 @@ const controller = async (req, res) => {
 
       const compress = await compresser(req, uniqueName, format);
       const url = `${serverUrl}/${uniqueName}`;
-      const resp = compresserImageResponse(url);
+      const resp = ImageResponse("Image Compresser",url);
 
       res.status(200).json({
         output: resp,
@@ -68,7 +66,7 @@ const controller = async (req, res) => {
 
       const grayscaleConverter = await grayscale(req, uniqueName, format);
       const url = `${serverUrl}/${uniqueName}`;
-      const resp = grayscaleImageResponse(url);
+      const resp = ImageResponse("Grayscale Converter",url);
 
       res.status(200).json({
         output: resp,

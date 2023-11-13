@@ -146,9 +146,9 @@ const grayScaleResponse = {
   },
 };
 
-const converterImageResponse = (url) => {
+const ImageResponse = (name,url) => {
   return {
-    text: "# Image Format Converter",
+    text: `# ${name}`,
     slides: [
       {
         type: "text",
@@ -174,70 +174,11 @@ const converterImageResponse = (url) => {
         type:"text",
         title:"hint",
         data:"- click on 'go to image'\n- right click on image and click on 'save image as'"
-      }
-    ],
-  };
-};
-const compresserImageResponse = (url) => {
-  return {
-    text: "# Image Compresser",
-    slides: [
-      {
-        type: "text",
-        title: "ImageToolKit",
-        buttons: [
-          {
-            label: "go to image",
-            type: "+",
-            action: {
-              type: "open.url",
-              data: { web: url },
-            },
-          },
-        ],
-        data: "Compressed Image...",
-      },
-      {
-        type: "text",
-        title: "",
-        data: "if it doesn't work...\nwait for few seconds, Image is rendering",
       },
       {
         type:"text",
-        title:"hint",
-        data:"- click on 'go to image'\n- right click on image and click on 'save image as'"
-      }
-    ],
-  };
-};
-const grayscaleImageResponse = (url) => {
-  return {
-    text: "# Grayscale Converter",
-    slides: [
-      {
-        type: "text",
-        title: "ImageToolKit",
-        buttons: [
-          {
-            label: "go to image",
-            type: "+",
-            action: {
-              type: "open.url",
-              data: { web: url },
-            },
-          },
-        ],
-        data: "Converted Image...",
-      },
-      {
-        type: "text",
-        title: "",
-        data: "if it doesn't work...\nwait for few seconds, Image is rendering",
-      },
-      {
-        type:"text",
-        title:"hint",
-        data:"- click on 'go to image'\n- right click on image and click on 'save image as'"
+        title:"note",
+        data:"The Larger the image size => more the waiting time"
       }
     ],
   };
@@ -259,8 +200,6 @@ module.exports = {
   converterResponse,
   compresserResponse,
   grayScaleResponse,
-  converterImageResponse,
-  compresserImageResponse,
-  grayscaleImageResponse,
+  ImageResponse,
   errorResponse,
 };
