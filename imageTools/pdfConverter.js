@@ -1,5 +1,6 @@
 const { PDFDocument } = require("pdf-lib");
 const fs = require('fs')
+const fetch = require('node-fetch');
 const pdfConverter = async (req,uniqueName)=>{
     const images = req.body?.params?.form?.values?.pdfconverter?.files.map(
         (k) => {
