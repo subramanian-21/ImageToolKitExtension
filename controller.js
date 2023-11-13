@@ -1,18 +1,120 @@
 const help = require("./imageTools/help");
+const converter = require("./imageTools/imageConverter");
+const compresser = require("./imageTools/imageCompresser");
+const grayscale = require("./imageTools/grayScale");
+const serverUrl = require('./config')
+
 const controller = async (req, res) => {
   let response = {};
-  
-console.log(req.body.params?.form?.values)
-  
 
-  if(req.body.params?.form?.values?.compresser){
-    
+  if (req.body.params?.form?.values?.converter) {
+    try {
+      const format = req.body.params.form?.values?.format.value;
+      const timestamp = new Date().getTime();
+      const randomNumber = Math.floor(Math.random() * 1000) + 1;
+      const uniqueName = `${timestamp}_${randomNumber}.${format}`;
+
+      const convert = await converter(req, uniqueName);
+      const url = `${serverUrl}/${uniqueName}`;
+      const resp = {
+        text: "# Result",
+        slides: [
+          {
+            type: "text",
+            title: "imageToolKit",
+            buttons: [
+              {
+                label: "go to image",
+                action: {
+                  type: "open.url",
+                  data: { web: url },
+                },
+              },
+            ],
+            data: "Compressed Image...",
+          },
+          {
+            type: "text",
+            title: "",
+            data: "if it doesn't work...wait for few seconds to render image",
+          },
+        ],
+      };
+
+      res.status(200).json({
+        output: resp,
+      });
+    } catch (error) {
+      const resp = {
+        text: "# Error",
+        slides: [
+          {
+            type: "text",
+            title: "ImageToolKit",
+            data: "Sorry Error Occured!\ntry again...",
+          },
+        ],
+      };
+      res.status(200).json({
+        output: resp,
+      });
+    }
   }
-  if(req.body.params?.form?.values?.converter){
-
+  if (req.body.params?.form?.values?.compresser) {
+    try {
+        const imageName = req.body.params.form?.values?.compresser.files.name;
+        const format = imageName.split(".")[imageName.split(".").length -1]
+        const timestamp = new Date().getTime();
+        const randomNumber = Math.floor(Math.random() * 1000) + 1;
+        const uniqueName = `${timestamp}_${randomNumber}.${format}`;
+  
+        const compress = await compresser(req, uniqueName,format);
+        const url = `${serverUrl}/${uniqueName}`;
+        const resp = {
+          text: "# Result",
+          slides: [
+            {
+              type: "text",
+              title: "imageToolKit",
+              buttons: [
+                {
+                  label: "go to image",
+                  action: {
+                    type: "open.url",
+                    data: { web: url },
+                  },
+                },
+              ],
+              data: "Converted Image...",
+            },
+            {
+              type: "text",
+              title: "",
+              data: "if it doesn't work...wait for few seconds to render image",
+            },
+          ],
+        };
+  
+        res.status(200).json({
+          output: resp,
+        });
+      } catch (error) {
+        const resp = {
+          text: "# Error",
+          slides: [
+            {
+              type: "text",
+              title: "ImageToolKit",
+              data: "Sorry Error Occured!\ntry again...",
+            },
+          ],
+        };
+        res.status(200).json({
+          output: resp,
+        });
+      }
   }
-  if(req.body.params?.form?.values?.grayscale){
-
+  if (req.body.params?.form?.values?.grayscale) {
   }
 
   if (req.body.params?.form?.name === "options") {
@@ -68,6 +170,9 @@ console.log(req.body.params?.form?.values)
             name: "imagetoolkitform",
           },
         };
+        res.status(200).json({
+          output: response,
+        });
         break;
       }
       case "compresser": {
@@ -100,6 +205,9 @@ console.log(req.body.params?.form?.values)
             name: "imagetoolkitform",
           },
         };
+        res.status(200).json({
+          output: response,
+        });
         break;
       }
       case "gray_scale": {
@@ -123,6 +231,9 @@ console.log(req.body.params?.form?.values)
             name: "imagetoolkitform",
           },
         };
+        res.status(200).json({
+          output: response,
+        });
         break;
       }
     }
@@ -163,13 +274,15 @@ console.log(req.body.params?.form?.values)
         name: "imagetoolkitform",
       },
     };
+    res.status(200).json({
+      output: response,
+    });
   }
   if (req.body.handler.name === "Help") {
     response = await help();
+    res.status(200).json({
+      output: response,
+    });
   }
-
-  res.status(200).json({
-    output: response,
-  });
 };
 module.exports = controller;
