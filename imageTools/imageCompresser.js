@@ -18,9 +18,6 @@ const compresser= async (req,uniqueName,format)=>{
             await image
               .quality(size)
               .writeAsync(`./public/${uniqueName}`)
-              .then(() => {
-                console.log("Image saved successfully.");
-              });
           });
         });
       } catch (error) {

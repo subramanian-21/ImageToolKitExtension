@@ -24,14 +24,13 @@ const pdfConverter = async (req,uniqueName)=>{
         }
         const { width, height } = jpgImage.scale(1);
         page.setSize(width, height);
-
+        
         page.drawImage(jpgImage, {
           x: 0,
           y: 0,
           width,
           height,
         });
-        console.log("done");
       }
 
       await Promise.all(images.map(async (k) => await createPdf(k)));

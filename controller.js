@@ -2,9 +2,7 @@ const converter = require("./imageTools/imageConverter");
 const compresser = require("./imageTools/imageCompresser");
 const serverUrl = require("./config");
 const grayscale = require("./imageTools/grayScale");
-const pdfConverter = require('./imageTools/pdfConverter')
-
-
+const pdfConverter = require("./imageTools/pdfConverter");
 const {
   helpResponse,
   optionsResponse,
@@ -14,21 +12,20 @@ const {
   errorResponse,
   pdfResponse,
   ImageResponse,
-  pdfResultResponse
+  pdfResultResponse,
 } = require("./responses");
-
 
 const controller = async (req, res) => {
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const timestamp = new Date().getTime();
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
-      const format= 'pdf'
+      const format = "pdf";
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
       const url = `${serverUrl}/${uniqueName}`;
-      const resp = pdfResultResponse("Images To PDF converter", url)
-      const pdf = await pdfConverter(req,uniqueName)
-    
+      const resp = pdfResultResponse("Images To PDF converter", url);
+      const pdf = await pdfConverter(req, uniqueName);
+
       res.status(200).json({
         output: resp,
       });
@@ -149,58 +146,3 @@ const controller = async (req, res) => {
   }
 };
 module.exports = controller;
-
-// const page =  document.addPage()
-// let image = fs.readFileSync(img)
-// image = await document.embedJpg(image)
-// const {width,height} = image.scale(1)
-// image.scale(1)
-// page.drawImage(img,{
-//   x:page.getWidth() /2 -width /2,
-//   y:page.getHeight()/2 -height /2
-// })
-
-// imStream.on("finish", async () => {
-
-//   const page =  document.addPage()
-//   let image = fs.readFileSync("./image.jpeg")
-//   image = await document.embedJpg(image)
-//   const {width,height} = image.scale(1)
-//   image.scale(1)
-//   page.drawImage(img,{
-
-//     x:page.getWidth() /2 -width /2,
-//     y:page.getHeight()/2 -height /2
-//   })
-
-// });
-
-/*
-        
-        let doc = await PDFDocument.create()
-    
-    
-    images.map(async (img,i)=>{
-     await axios.get(img, { responseType: "stream" }).then((response) => {
-        const imageLoc = path.join(__dirname,`${i}.jpg`)
-        const imStream = fs.createWriteStream(imageLoc);
-        response.data.pipe(imStream); 
-          imStream.on("finish", async () => {
-          console.log(i)
-
-          const page =  doc.addPage()
-          let imag = fs.readFileSync(`./${i}.jpg`)
-          console.log(imag)
-          imag = await doc.embedJpg(imag)
-          const {width,height} = imag.scale(1)
-          imag.scale(1)
-          page.drawImage(img,{
-            x:page.getWidth() /2 -width / 2,
-            y:page.getHeight()/2 -height /2
-          })
-          fs.writeFileSync('./public/output.pdf',await doc.save())
-        });
-        
-    });
-  })  
-*/

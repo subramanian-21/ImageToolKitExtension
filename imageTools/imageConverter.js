@@ -21,9 +21,6 @@ const converter = async (req, name) => {
         await image
           .quality(50)
           .writeAsync(`./public/${name}`)
-          .then(() => {
-            console.log("Image saved successfully.");
-          });
       });
     });
   } catch (error) {

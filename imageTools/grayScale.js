@@ -16,9 +16,6 @@ const grayscale= async(req,uniqueName,format)=>{
               .quality(50)
               .grayscale()
               .writeAsync(`./public/${uniqueName}`)
-              .then(() => {
-                console.log("Image saved successfully.");
-              });
           });
         });
       } catch (error) {
