@@ -3,6 +3,7 @@ const compresser = require("./imageTools/imageCompresser");
 const serverUrl = require("./config");
 const grayscale = require("./imageTools/grayScale");
 const pdfConverter = require("./imageTools/pdfConverter");
+const animeEmoji =require('./imageTools/animeEmoji')
 const {
   helpResponse,
   optionsResponse,
@@ -13,9 +14,12 @@ const {
   pdfResponse,
   ImageResponse,
   pdfResultResponse,
+  funResponse,
+  animeResponse
 } = require("./responses");
 
 const controller = async (req, res) => {
+
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const timestamp = new Date().getTime();
@@ -99,6 +103,13 @@ const controller = async (req, res) => {
       });
     }
   }
+  if(req.body.params?.form?.values?.dynamic_select){
+    const response =await animeEmoji(req.body.params.form?.values?.dynamic_select?.value)
+    res.status(200).json({
+      output: response,
+    });
+  }
+
 
   if (req.body.params?.form?.name === "options") {
     switch (req.body.params?.form?.values?.options?.value) {
@@ -129,6 +140,12 @@ const controller = async (req, res) => {
           output: response,
         });
       }
+      case "anime":{
+        const response = animeResponse;
+        res.status(200).json({
+          output: response,
+        });
+      }
     }
   }
 
@@ -140,6 +157,12 @@ const controller = async (req, res) => {
   }
   if (req.body.handler.name === "Help") {
     const response = helpResponse;
+    res.status(200).json({
+      output: response,
+    });
+  }
+  if(req.body.handler.name === "Fun"){
+    const response = funResponse;
     res.status(200).json({
       output: response,
     });
