@@ -152,7 +152,7 @@ const animeResponse = {
         },
         {
           value: "calm-down",
-          label: "calm-down",
+          label: "calm down",
         },
         {
           value: "confused",
@@ -164,7 +164,7 @@ const animeResponse = {
         },
         {
           value: "pre-exercise",
-          label: "pre-exercise",
+          label: "pre exercise",
         },
         {
           value: "happy",
@@ -172,7 +172,7 @@ const animeResponse = {
         },
         {
           value: "lunch-break-time",
-          label: "lunch-break-time",
+          label: "lunch break time",
         },
         {
           value: "yes",
@@ -244,6 +244,62 @@ const memeResponse = {
   },
 };
 
+const memeCreatorResponse = {
+  type: "form",
+  title: "ImageToolKit",
+  name: "memeCreator",
+  hint: "Meme Creator",
+  button_label: "GO!",
+  inputs: [
+    {
+      name: "memeCreator",
+      label: "Upload Background Image",
+      placeholder: "File must be of format JPG, PNG, JPEG, GIF, WEBP",
+      mandatory: true,
+      type: "file",
+    },
+    {
+      name: "textTop",
+      label: "Text that should be placed at Top",
+      placeholder: "What's up",
+      min_length: "0",
+      max_length: "30",
+      mandatory: false,
+      type: "text",
+    },
+    {
+      name: "textBottom",
+      label: "Text that should be placed at Bottom",
+      placeholder: "Hello World",
+      min_length: "0",
+      max_length: "30",
+      mandatory: false,
+      type: "text",
+    },
+    {
+      name: "font",
+      label: "Select Text Font",
+      placeholder: "Choose from the list of Fonts",
+      multiple: false,
+      mandatory: false,
+      type: "dynamic_select",
+      options: [
+        {
+          value: "thick",
+          label: "Thick",
+        },
+        {
+          value: "cosmic",
+          label: "Cosmic",
+        },
+      ],
+    },
+  ],
+  action: {
+    type: "invoke.function",
+    name: "imagetoolkitform",
+  },
+};
 const compresserResponse = {
   type: "form",
   title: "ImageToolKit",
