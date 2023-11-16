@@ -65,6 +65,14 @@ const funResponse = {
           value: "anime",
           label: "Anime Emoji Generator",
         },
+        {
+          value: "meme",
+          label: "Memes Generator",
+        },
+        {
+          value: "memeCreator",
+          label: "Meme Creator",
+        },
       ],
     },
   ],
@@ -155,16 +163,16 @@ const animeResponse = {
           label: "dance",
         },
         {
-          value: "embarrased-nervous",
-          label: "embarrased-nervous",
+          value: "pre-exercise",
+          label: "pre-exercise",
         },
         {
           value: "happy",
           label: "happy",
         },
         {
-          value: "imdumb",
-          label: "imdumb",
+          value: "lunch-break-time",
+          label: "lunch-break-time",
         },
         {
           value: "yes",
@@ -199,6 +207,35 @@ const animeResponse = {
           label: "yes",
         },
       ],
+    },
+  ],
+  action: {
+    type: "invoke.function",
+    name: "imagetoolkitform",
+  },
+};
+
+const memeResponse = {
+  type: "form",
+  title: "ImageToolKit",
+  name: "meme",
+  hint: "Memes Generator",
+  button_label: "GO!",
+  inputs: [
+    {
+      name: "text",
+      label: "Search by Meme....",
+      placeholder: "Keep it short",
+      min_length: "0",
+      max_length: "25",
+      mandatory: false,
+      type: "text",
+    },
+    {
+      name: "toggle",
+      label: "Safe Search",
+      value: false,
+      type: "toggle",
     },
   ],
   action: {
@@ -370,4 +407,5 @@ module.exports = {
   pdfResultResponse,
   funResponse,
   animeResponse,
+  memeResponse,
 };

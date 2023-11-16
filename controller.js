@@ -4,6 +4,8 @@ const serverUrl = require("./config");
 const grayscale = require("./imageTools/grayScale");
 const pdfConverter = require("./imageTools/pdfConverter");
 const animeEmoji =require('./imageTools/animeEmoji')
+const meme = require('./imageTools/meme')
+
 const {
   helpResponse,
   optionsResponse,
@@ -15,11 +17,12 @@ const {
   ImageResponse,
   pdfResultResponse,
   funResponse,
-  animeResponse
+  animeResponse,
+  memeResponse
 } = require("./responses");
 
 const controller = async (req, res) => {
-
+console.log(req.body.params?.form?.values)
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const timestamp = new Date().getTime();
@@ -109,6 +112,13 @@ const controller = async (req, res) => {
       output: response,
     });
   }
+  if(req.body.params?.form?.values?.text){
+    const response = await meme(req.body.params?.form?.values?.text,req.body.params?.form?.values?.toggle)
+    res.status(200).json({
+      output: response,
+    });
+  }
+  
 
 
   if (req.body.params?.form?.name === "options") {
@@ -142,6 +152,12 @@ const controller = async (req, res) => {
       }
       case "anime":{
         const response = animeResponse;
+        res.status(200).json({
+          output: response,
+        });
+      }
+      case "meme":{
+        const response = memeResponse;
         res.status(200).json({
           output: response,
         });
