@@ -1,3 +1,3 @@
-const url = "https://b366-27-62-51-218.ngrok.io"
+const url = "https://imagetoolkitextension.onrender.com"
 
 module.exports = url
