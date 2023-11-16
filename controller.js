@@ -4,7 +4,6 @@ const serverUrl = require("./config");
 const grayscale = require("./imageTools/grayScale");
 const pdfConverter = require("./imageTools/pdfConverter");
 const animeEmoji = require("./imageTools/animeEmoji");
-const meme = require("./imageTools/meme");
 const memeCreator = require("./imageTools/memeCreator");
 
 const {
@@ -139,15 +138,6 @@ const controller = async (req, res) => {
     });
   }
 
-  if (req.body.params?.form?.values?.text) {
-    const response = await meme(
-      req.body.params?.form?.values?.text,
-      req.body.params?.form?.values?.toggle
-    );
-    res.status(200).json({
-      output: response,
-    });
-  }
 
   if (req.body.params?.form?.name === "options") {
     switch (req.body.params?.form?.values?.options?.value) {
@@ -186,13 +176,7 @@ const controller = async (req, res) => {
         });
         break;
       }
-      case "meme": {
-        const response = memeResponse;
-        res.status(200).json({
-          output: response,
-        });
-        break;
-      }
+   
       case "memeCreator": {
         const response = memeCreatorResponse;
         res.status(200).json({

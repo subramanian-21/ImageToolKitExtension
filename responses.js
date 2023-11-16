@@ -66,10 +66,6 @@ const funResponse = {
           label: "Anime Emoji Generator",
         },
         {
-          value: "meme",
-          label: "Memes Generator",
-        },
-        {
           value: "memeCreator",
           label: "Meme Creator",
         },
