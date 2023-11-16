@@ -282,15 +282,23 @@ const memeCreatorResponse = {
       placeholder: "Choose from the list of Fonts",
       multiple: false,
       mandatory: false,
-      type: "dynamic_select",
+      type: "select",
       options: [
         {
           value: "thick",
           label: "Thick",
         },
         {
-          value: "cosmic",
-          label: "Cosmic",
+          value: "comic",
+          label: "Comic",
+        },
+        {
+          value: "tiny",
+          label: "Tiny",
+        },
+        {
+          value: "thin",
+          label: "Thin",
         },
       ],
     },
@@ -333,7 +341,7 @@ const pdfResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "pdfconverter",
-  hint: "Convert multiple images to a PDF",
+  hint: "*Please upload a image (.jpg, .jpeg, .png Only)\n*Upload images of <500kb\n*Compress it before converting into pdf",
   button_label: "Render",
   inputs: [
     {
@@ -341,10 +349,12 @@ const pdfResponse = {
       label: "Select image to be changed",
       placeholder: "Please upload a image (.jpg, .jpeg, .png)",
       multiple: true,
+      max_selections:8,
       mandatory: true,
       type: "file",
     },
   ],
+
   action: {
     type: "invoke.function",
     name: "imagetoolkitform",
@@ -451,6 +461,17 @@ const errorResponse = {
   ],
 };
 
+const unsupportedResponse = {
+  slides: [
+    {
+      type: "text",
+      title: "Error!",
+      data: "Oops! unsupported image format...",
+    },
+  ],
+  text: "# ImageToolKit",
+};
+
 module.exports = {
   helpResponse,
   optionsResponse,
@@ -464,4 +485,7 @@ module.exports = {
   funResponse,
   animeResponse,
   memeResponse,
+  memeCreatorResponse,
+  unsupportedResponse,
+  
 };

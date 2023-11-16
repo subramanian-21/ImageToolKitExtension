@@ -3,8 +3,9 @@ const compresser = require("./imageTools/imageCompresser");
 const serverUrl = require("./config");
 const grayscale = require("./imageTools/grayScale");
 const pdfConverter = require("./imageTools/pdfConverter");
-const animeEmoji =require('./imageTools/animeEmoji')
-const meme = require('./imageTools/meme')
+const animeEmoji = require("./imageTools/animeEmoji");
+const meme = require("./imageTools/meme");
+const memeCreator = require("./imageTools/memeCreator");
 
 const {
   helpResponse,
@@ -18,11 +19,12 @@ const {
   pdfResultResponse,
   funResponse,
   animeResponse,
-  memeResponse
+  memeResponse,
+  memeCreatorResponse,
+  unsupportedResponse,
 } = require("./responses");
 
 const controller = async (req, res) => {
-console.log(req.body.params?.form?.values)
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const timestamp = new Date().getTime();
@@ -30,17 +32,19 @@ console.log(req.body.params?.form?.values)
       const format = "pdf";
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
       const url = `${serverUrl}/${uniqueName}`;
-      const resp = pdfResultResponse("Images To PDF converter", url);
-      const pdf = await pdfConverter(req, uniqueName);
 
+      const pdf = await pdfConverter(req, uniqueName);
+      const resp = pdfResultResponse("Images To PDF converter", url);
       res.status(200).json({
         output: resp,
       });
     } catch (error) {
-      console.log(error);
+      const resp = unsupportedResponse;
+      res.status(200).json({
+        output: resp,
+      });
     }
   }
-
   if (req.body.params?.form?.values?.converter) {
     try {
       const format = req.body.params.form?.values?.format.value;
@@ -56,12 +60,13 @@ console.log(req.body.params?.form?.values)
         output: resp,
       });
     } catch (error) {
-      const resp = errorResponse;
+      const resp = unsupportedResponse;
       res.status(200).json({
         output: resp,
       });
     }
   }
+
   if (req.body.params?.form?.values?.compresser) {
     try {
       const imageName = req.body.params.form?.values?.compresser.files.name;
@@ -78,10 +83,28 @@ console.log(req.body.params?.form?.values)
         output: resp,
       });
     } catch (error) {
-      const resp = errorResponse;
+      const resp = unsupportedResponse;
       res.status(200).json({
         output: resp,
       });
+    }
+  }
+
+  if (req.body.params?.form?.values?.memeCreator) {
+    try {
+    
+      const  response = await memeCreator(
+          req.body.params?.form?.values?.memeCreator?.files?.url,
+          req.body.params?.form?.values?.textTop,
+          req.body.params?.form?.values?.textBottom,
+          req.body.params?.form?.values?.font?.value
+        );
+        
+      res.status(200).json({
+        output: response,
+      });
+    } catch (error) {
+      console.log(error);
     }
   }
   if (req.body.params?.form?.values?.grayscale) {
@@ -100,26 +123,31 @@ console.log(req.body.params?.form?.values)
         output: resp,
       });
     } catch (error) {
-      const resp = errorResponse;
+      const resp = unsupportedResponse;
       res.status(200).json({
         output: resp,
       });
     }
   }
-  if(req.body.params?.form?.values?.dynamic_select){
-    const response =await animeEmoji(req.body.params.form?.values?.dynamic_select?.value)
-    res.status(200).json({
-      output: response,
-    });
-  }
-  if(req.body.params?.form?.values?.text){
-    const response = await meme(req.body.params?.form?.values?.text,req.body.params?.form?.values?.toggle)
-    res.status(200).json({
-      output: response,
-    });
-  }
-  
 
+  if (req.body.params?.form?.values?.dynamic_select) {
+    const response = await animeEmoji(
+      req.body.params.form?.values?.dynamic_select?.value
+    );
+    res.status(200).json({
+      output: response,
+    });
+  }
+
+  if (req.body.params?.form?.values?.text) {
+    const response = await meme(
+      req.body.params?.form?.values?.text,
+      req.body.params?.form?.values?.toggle
+    );
+    res.status(200).json({
+      output: response,
+    });
+  }
 
   if (req.body.params?.form?.name === "options") {
     switch (req.body.params?.form?.values?.options?.value) {
@@ -149,18 +177,28 @@ console.log(req.body.params?.form?.values)
         res.status(200).json({
           output: response,
         });
+        break;
       }
-      case "anime":{
+      case "anime": {
         const response = animeResponse;
         res.status(200).json({
           output: response,
         });
+        break;
       }
-      case "meme":{
+      case "meme": {
         const response = memeResponse;
         res.status(200).json({
           output: response,
         });
+        break;
+      }
+      case "memeCreator": {
+        const response = memeCreatorResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
       }
     }
   }
@@ -177,7 +215,7 @@ console.log(req.body.params?.form?.values)
       output: response,
     });
   }
-  if(req.body.handler.name === "Fun"){
+  if (req.body.handler.name === "Fun") {
     const response = funResponse;
     res.status(200).json({
       output: response,
