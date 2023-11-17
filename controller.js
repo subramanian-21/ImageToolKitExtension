@@ -12,13 +12,11 @@ const {
   converterResponse,
   compresserResponse,
   grayScaleResponse,
-  errorResponse,
   pdfResponse,
   ImageResponse,
   pdfResultResponse,
   funResponse,
   animeResponse,
-  memeResponse,
   memeCreatorResponse,
   unsupportedResponse,
 } = require("./responses");
