@@ -1,4 +1,3 @@
-
 services:
   - name: imagetoolkitextension
     type: web
@@ -6,4 +5,4 @@ services:
     install:
       - apt-get update
       - apt-get install -y imagemagick
-      -convert --version
+      - convert --version
