@@ -6,6 +6,6 @@ app.use(express.static("./public"))
 
 app.use("/",require('./router'))
 
-app.listen(5001,()=>{
-    console.log("Server@5001")
+app.listen(5000,()=>{
+    console.log("Server@5000")
 })

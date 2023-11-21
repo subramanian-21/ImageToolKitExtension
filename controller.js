@@ -15,6 +15,7 @@ const {
   pdfResponse,
   ImageResponse,
   rotateResponse,
+  resizeResponse,
   pdfResultResponse,
   funResponse,
   animeResponse,
@@ -208,6 +209,14 @@ const controller = async (req, res) => {
    
       case "memeCreator": {
         const response = memeCreatorResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+
+      case "resize": {
+        const response = resizeResponse;
         res.status(200).json({
           output: response,
         });

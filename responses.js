@@ -40,6 +40,10 @@ const optionsResponse = {
           label: "Rotate Image",
         },
         {
+          value: "resize",
+          label: "Resize Image",
+        },
+        {
           value: "grayscale",
           label: "Gray Scale",
         },
@@ -81,6 +85,71 @@ const funResponse = {
     name: "imagetoolkitform",
   },
 };
+const resizeResponse = {
+  type: "form",
+  title: "ImageToolKit",
+  name: "resize",
+  hint: "resize any (JPG, JPEG, PNG, WEBP, GIF...) of the image formats",
+  button_label: "Render",
+  inputs: [
+    {
+      name: "resize",
+      label: "Select image to be resized",
+      placeholder:
+        "Please upload a image (.jpg, .jpeg, .png, .webp, .gif ....)",
+      mandatory: true,
+      type: "file",
+    },
+    {
+      name: "resizes",
+      label: "Formats",
+      placeholder: "Standard sizes",
+      multiple: false,
+      mandatory: true,
+      type: "select",
+      options: [
+        {
+          value: "1920x1080",
+          label: "1920x1080 - Full HD (1080p)",
+        },
+        {
+          value: "1280x720",
+          label: "1280x720 - HD (720p)",
+        },
+        {
+          value: "800x800",
+          label: "800x800 - Square (1:1)",
+        },
+        {
+          value: "150x150",
+          label: "150x150 - Thumbnail",
+        },
+        {
+          value: "1200x400",
+          label: "1200x400 - Banner/Heade",
+        },
+        {
+          value: "600x400",
+          label: "600x400 - Email Newsletter",
+        },
+      ],
+    },
+    {
+      name: "customsize",
+      label: "Can't find the size enter custom size",
+      placeholder: "Enter in this format widthxheight",
+      min_length: "0",
+      max_length: "25",
+      mandatory: false,
+      type: "text",
+    },
+  ],
+  action: {
+    type: "invoke.function",
+    name: "imagetoolkitform",
+  },
+};
+
 const converterResponse = {
   type: "form",
   title: "ImageToolKit",
@@ -91,7 +160,8 @@ const converterResponse = {
     {
       name: "converter",
       label: "Select image to be converted",
-      placeholder: "Please upload a image (.jpg, .jpeg, .png, .webp, .gif ....)",
+      placeholder:
+        "Please upload a image (.jpg, .jpeg, .png, .webp, .gif ....)",
       mandatory: true,
       type: "file",
     },
@@ -215,7 +285,7 @@ const animeResponse = {
   },
 };
 
-const rotateResponse =  {
+const rotateResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "rotate",
@@ -225,7 +295,8 @@ const rotateResponse =  {
     {
       name: "rotate",
       label: "Select image to be rotated",
-      placeholder: "Please upload a image (.jpg, .jpeg, .png, .webp, .gif ....)",
+      placeholder:
+        "Please upload a image (.jpg, .jpeg, .png, .webp, .gif ....)",
       mandatory: true,
       type: "file",
     },
@@ -249,7 +320,6 @@ const rotateResponse =  {
           value: "270",
           label: "270° (left)",
         },
-        
       ],
     },
   ],
@@ -490,7 +560,6 @@ const pdfResultResponse = (name, url) => {
         title: "Note :",
         data: "The Larger the image size => more the waiting time\n*It is recomended to compress images before converting into PDF*",
       },
-     
     ],
   };
 };
@@ -525,6 +594,7 @@ module.exports = {
   ImageResponse,
   errorResponse,
   pdfResponse,
+  resizeResponse,
   pdfResultResponse,
   rotateResponse,
   funResponse,
@@ -533,5 +603,3 @@ module.exports = {
   memeCreatorResponse,
   unsupportedResponse,
 };
-
-
