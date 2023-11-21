@@ -1,6 +1,3 @@
-const axios = require("axios");
-const { PassThrough } = require("stream");
-const path = require("path");
 const sharp = require("sharp");
 const compresser = async (req, uniqueName, formatt) => {
   try {
