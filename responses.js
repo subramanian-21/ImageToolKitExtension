@@ -102,12 +102,16 @@ const resizeResponse = {
     },
     {
       name: "resizes",
-      label: "Formats",
+      label: "sizes",
       placeholder: "Standard sizes",
       multiple: false,
       mandatory: true,
       type: "select",
       options: [
+        {
+          value: "0",
+          label: "Custom Width & Height(Enter in the below fields)",
+        },
         {
           value: "1920x1080",
           label: "1920x1080 - Full HD (1080p)",
@@ -126,22 +130,33 @@ const resizeResponse = {
         },
         {
           value: "1200x400",
-          label: "1200x400 - Banner/Heade",
+          label: "1200x400 - Banner/Header",
         },
         {
           value: "600x400",
           label: "600x400 - Email Newsletter",
         },
+       
+        
       ],
     },
     {
-      name: "customsize",
-      label: "Can't find the size enter custom size",
-      placeholder: "Enter in this format widthxheight",
-      min_length: "0",
-      max_length: "25",
+      name: "width",
+      label: "Enter Custom Width",
+      placeholder: "We know you're forever young. But how old are you?",
+      min: "0",
+      max: "4096",
       mandatory: false,
-      type: "text",
+      type: "number",
+    },
+    {
+      name: "height",
+      label: "Enter Custom Height",
+      placeholder: "We know you're forever young. But how old are you?",
+      min: "0",
+      max: "2160",
+      mandatory: false,
+      type: "number",
     },
   ],
   action: {
