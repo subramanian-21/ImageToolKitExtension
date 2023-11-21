@@ -7,6 +7,7 @@ const pdfConverter = async (req, uniqueName) => {
   const images = req.body?.params?.form?.values?.pdfconverter?.files.map(
     (k) => {
       return {
+        
         url: k.url,
         format: k.contenttype.split("/")[1],
       };

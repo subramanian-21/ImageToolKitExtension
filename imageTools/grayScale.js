@@ -1,25 +1,20 @@
-const axios = require("axios");
-const path = require("path");
-const fs = require("fs");
-const jimp = require("jimp");
-
-const grayscale= async(req,uniqueName,format)=>{
+const sharp = require('sharp')
+const converter = async (req, name) => {
     try{
-        const imageUrl = req.body.params.form?.values?.grayscale.files.url;
-        const imageLoc = path.join(__dirname, `image.${format}`);   
-        await axios.get(imageUrl, { responseType: "stream" }).then((response) => {
-          const imStream = fs.createWriteStream(imageLoc);
-          response.data.pipe(imStream);
-          imStream.on("finish", async () => {
-            const image = await jimp.read(imageLoc);
-            await image
-              .quality(50)
-              .grayscale()
-              .writeAsync(`./public/${uniqueName}`)
-          });
-        });
-      } catch (error) {
-          console.log(error)
-      }
-}
-module.exports = grayscale
+    const imageUrl = req.body.params.form?.values?.grayscale.files.url;
+
+    const response = await fetch(imageUrl);
+
+    const buffer = await response.arrayBuffer();
+
+    const resizedImage = sharp(buffer);
+    resizedImage.grayscale();
+
+    await resizedImage.toFile(`./public/${name}`);
+
+    console.log("Image resizing and saving complete");
+  } catch (error) {
+      console.log(error)
+  }
+};
+module.exports = converter;

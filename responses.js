@@ -379,14 +379,14 @@ const grayScaleResponse = {
 
 const ImageResponse = (name, url) => {
   return {
+    text: `# ${name}`,
     slides: [
       {
-        type: "images",
-        title: `# ImageToolKit`,
+        type: "text",
+        title: "ImageToolKit",
         buttons: [
           {
             label: "Go to image",
-            hint: "",
             type: "+",
             action: {
               type: "open.url",
@@ -394,17 +394,25 @@ const ImageResponse = (name, url) => {
             },
           },
         ],
-        data: [url],
+        data: "Converted image...",
       },
       {
         type: "text",
-        title: "Note",
-        data: "Converting from jpeg to png gives larger image sizes\nCompress it again for required size...",
+        title: "",
+        data: "if it doesn't work...\nwait for few seconds, image is rendering",
+      },
+      {
+        type: "text",
+        title: "Note :",
+        data: "The Larger the image size => more the waiting time",
+      },
+      {
+        type: "text",
+        title: "Hint :",
+        data: "Click on 'Go to image'\nRight click on image and select 'Save image as...'",
       },
     ],
-    text: `# ${name}`,
   };
-  I;
 };
 const pdfResultResponse = (name, url) => {
   return {
@@ -432,9 +440,10 @@ const pdfResultResponse = (name, url) => {
       },
       {
         type: "text",
-        title: "note",
+        title: "Note :",
         data: "The Larger the image size => more the waiting time\n*It is recomended to compress images before converting into PDF*",
       },
+     
     ],
   };
 };

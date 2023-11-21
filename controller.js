@@ -30,7 +30,7 @@ const controller = async (req, res) => {
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
       const url = `${serverUrl}/${uniqueName}`;
 
-      const pdf = await pdfConverter(req, uniqueName);
+      const pdf = pdfConverter(req, uniqueName);
       const resp = pdfResultResponse("Images To PDF converter", url);
       res.status(200).json({
         output: resp,
@@ -49,7 +49,7 @@ const controller = async (req, res) => {
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
 
-      const convert = await converter(req, uniqueName);
+      const convert = converter(req, uniqueName);
       const url = `${serverUrl}/${uniqueName}`;
       const resp = ImageResponse("Image Format Converter", url);
 
@@ -72,7 +72,7 @@ const controller = async (req, res) => {
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
 
-      const compress = await compresser(req, uniqueName, format);
+      const compress = compresser(req, uniqueName, format);
       const url = `${serverUrl}/${uniqueName}`;
       const resp = ImageResponse("Image Compresser", url);
 
@@ -112,7 +112,7 @@ const controller = async (req, res) => {
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
 
-      const grayscaleConverter = await grayscale(req, uniqueName, format);
+      const grayscaleConverter = grayscale(req, uniqueName, format);
       const url = `${serverUrl}/${uniqueName}`;
       const resp = ImageResponse("Grayscale Converter", url);
 
