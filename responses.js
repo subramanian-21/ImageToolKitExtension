@@ -345,7 +345,7 @@ const pdfResponse = {
       label: "Select image to be changed",
       placeholder: "Please upload a image (.jpg, .jpeg, .png)",
       multiple: true,
-      max_selections:8,
+      max_selections: 8,
       mandatory: true,
       type: "file",
     },
@@ -379,14 +379,14 @@ const grayScaleResponse = {
 
 const ImageResponse = (name, url) => {
   return {
-    text: `# ${name}`,
     slides: [
       {
-        type: "text",
-        title: "ImageToolKit",
+        type: "images",
+        title: `# ImageToolKit`,
         buttons: [
           {
-            label: "go to image",
+            label: "Go to image",
+            hint: "",
             type: "+",
             action: {
               type: "open.url",
@@ -394,25 +394,17 @@ const ImageResponse = (name, url) => {
             },
           },
         ],
-        data: "Converted Image...",
+        data: [url],
       },
       {
         type: "text",
         title: "",
-        data: "if it doesn't work...\nwait for few seconds, Image is rendering",
-      },
-      {
-        type: "text",
-        title: "hint",
-        data: "- click on 'go to image'\n- right click on image and click on 'save image as'",
-      },
-      {
-        type: "text",
-        title: "note",
-        data: "The Larger the image size => more the waiting time",
+        data: "if it doesn't work...\nwait for few seconds, image is rendering",
       },
     ],
+    text: `# ${name}`,
   };
+  I;
 };
 const pdfResultResponse = (name, url) => {
   return {
@@ -483,5 +475,43 @@ module.exports = {
   memeResponse,
   memeCreatorResponse,
   unsupportedResponse,
-  
 };
+
+/*
+
+
+{"slides":[{"type":"images","title":"Title for your Images","buttons":[{"label":"Button 1","hint":"","type":"+","action":{"type":"open.url","data":{"web":"https://cliq.zoho.com"}}}],"data":["https://i.giphy.com/l0MYEqEzwMWFCg8rm.gif"]},{"type":"text","title":"Title for your Text","data":"Zoho Corporation, founded in 1996, known for pioneering software as a service (SAAS) model."}],"text":"Your message on the card goes here!"}I
+
+
+
+{
+    text: `# ${name}`,
+    slides: [
+      {
+        type: "text",
+        title: "ImageToolKit",
+        buttons: [
+          {
+            label: "Open PDF",
+            type: "+",
+            action: {
+              type: "open.url",
+              data: { web: url },
+            },
+          },
+        ],
+        data: "Converted PDF...",
+      },
+      {
+        type: "text",
+        title: "",
+        data: "if it doesn't work...\nwait for few seconds, PDF is rendering",
+      },
+      {
+        type: "text",
+        title: "note",
+        data: "The Larger the image size => more the waiting time\n*It is recomended to compress images before converting into PDF*",
+      },
+    ],
+  };
+*/
