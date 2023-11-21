@@ -5,7 +5,7 @@ const grayscale = require("./imageTools/grayScale");
 const pdfConverter = require("./imageTools/pdfConverter");
 const animeEmoji = require("./imageTools/animeEmoji");
 const memeCreator = require("./imageTools/memeCreator");
-
+const rotateImage =  require('./imageTools/rotateImage')
 const {
   helpResponse,
   optionsResponse,
@@ -87,6 +87,28 @@ const controller = async (req, res) => {
       });
     }
   }
+  if (req.body.params?.form?.values?.rotate) {
+    try {
+      const imageName = req.body.params.form?.values?.rotate.files.name;
+      const format = imageName.split(".")[imageName.split(".").length - 1];
+      const timestamp = new Date().getTime();
+      const randomNumber = Math.floor(Math.random() * 1000) + 1;
+      const uniqueName = `${timestamp}_${randomNumber}.${format}`;
+
+      const rotate = rotateImage(req, uniqueName);
+      const url = `${serverUrl}/${uniqueName}`;
+      const resp = ImageResponse("Rotate Image", url);
+
+      res.status(200).json({
+        output: resp,
+      });
+    } catch (error) {
+      const resp = unsupportedResponse;
+      res.status(200).json({
+        output: resp,
+      });
+    }
+  }
 
   if (req.body.params?.form?.values?.memeCreator) {
     try {
@@ -105,6 +127,7 @@ const controller = async (req, res) => {
       console.log(error);
     }
   }
+
   if (req.body.params?.form?.values?.grayscale) {
     try {
       const imageName = req.body.params.form?.values?.grayscale.files.name;

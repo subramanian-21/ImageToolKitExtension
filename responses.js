@@ -231,7 +231,7 @@ const rotateResponse =  {
     },
     {
       name: "degree",
-      label: "Formats",
+      label: "Rotation Degree",
       placeholder: "Choose from the list of options",
       multiple: false,
       mandatory: true,
