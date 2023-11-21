@@ -5,8 +5,6 @@ const sharp = require("sharp");
 const compresser = async (req, uniqueName, formatt) => {
   try {
     const imageUrl = req.body.params.form?.values?.compresser.files.url;
-
-    const imageLoc = path.join(__dirname, `image.${formatt}`);
     const size = req.body.params.form?.values?.size;
 
 

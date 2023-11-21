@@ -1,8 +1,0 @@
-services:
-  - name: imagetoolkitextension
-    type: web
-    env: node
-    install:
-      - apt-get update
-      - apt-get install -y imagemagick
-      - convert --version
