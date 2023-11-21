@@ -398,8 +398,8 @@ const ImageResponse = (name, url) => {
       },
       {
         type: "text",
-        title: "",
-        data: "if it doesn't work...\nwait for few seconds, image is rendering",
+        title: "Note",
+        data: "Converting from jpeg to png gives larger image sizes\nCompress it again for required size...",
       },
     ],
     text: `# ${name}`,
