@@ -81,13 +81,13 @@ const converterResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "converter",
-  hint: "convert Image from JPG, JPEG, PNG ,... to any of the formats ",
+  hint: "convert Image from JPG, JPEG, PNG, WEBP, GIF... to any of the formats ",
   button_label: "Render",
   inputs: [
     {
       name: "converter",
       label: "Select image to be converted",
-      placeholder: "Please upload a image (.jpg, .jpeg, .png, ....)",
+      placeholder: "Please upload a image (.jpg, .jpeg, .png, .webp, .gif ....)",
       mandatory: true,
       type: "file",
     },
@@ -112,8 +112,8 @@ const converterResponse = {
           label: "PNG",
         },
         {
-          value: "svg",
-          label: "SVG",
+          value: "webp",
+          label: "WEBP",
         },
         {
           value: "gif",
@@ -314,7 +314,7 @@ const compresserResponse = {
     {
       name: "compresser",
       label: "Select image to be compressed",
-      placeholder: "Please upload a image (.jpg, .jpeg, .png, ....)",
+      placeholder: "Please upload a image (.jpg, .jpeg, .png, .webp, .gif....)",
       mandatory: true,
       type: "file",
     },
@@ -486,41 +486,4 @@ module.exports = {
   unsupportedResponse,
 };
 
-/*
 
-
-{"slides":[{"type":"images","title":"Title for your Images","buttons":[{"label":"Button 1","hint":"","type":"+","action":{"type":"open.url","data":{"web":"https://cliq.zoho.com"}}}],"data":["https://i.giphy.com/l0MYEqEzwMWFCg8rm.gif"]},{"type":"text","title":"Title for your Text","data":"Zoho Corporation, founded in 1996, known for pioneering software as a service (SAAS) model."}],"text":"Your message on the card goes here!"}I
-
-
-
-{
-    text: `# ${name}`,
-    slides: [
-      {
-        type: "text",
-        title: "ImageToolKit",
-        buttons: [
-          {
-            label: "Open PDF",
-            type: "+",
-            action: {
-              type: "open.url",
-              data: { web: url },
-            },
-          },
-        ],
-        data: "Converted PDF...",
-      },
-      {
-        type: "text",
-        title: "",
-        data: "if it doesn't work...\nwait for few seconds, PDF is rendering",
-      },
-      {
-        type: "text",
-        title: "note",
-        data: "The Larger the image size => more the waiting time\n*It is recomended to compress images before converting into PDF*",
-      },
-    ],
-  };
-*/
