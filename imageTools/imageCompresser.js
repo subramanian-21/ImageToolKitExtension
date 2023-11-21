@@ -27,7 +27,7 @@ const compresser = async (req, uniqueName, formatt) => {
     } else {
       console.log("format error");
     }
-    await resizedImage.toFile(`./public/${uniqueName}`);
+    await resizedImage.withMetadata().toFile(`./public/${uniqueName}`);
 
     console.log("Image resizing and saving complete");
   } catch (error) {
