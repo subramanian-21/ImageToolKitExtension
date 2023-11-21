@@ -36,6 +36,10 @@ const optionsResponse = {
           label: "Image Compresser",
         },
         {
+          value: "rotate",
+          label: "Rotate Image",
+        },
+        {
           value: "grayscale",
           label: "Gray Scale",
         },
@@ -211,6 +215,49 @@ const animeResponse = {
   },
 };
 
+const rotateResponse =  {
+  type: "form",
+  title: "ImageToolKit",
+  name: "rotate",
+  hint: "Rotate images from 90, 180, 270 degrees",
+  button_label: "Render",
+  inputs: [
+    {
+      name: "rotate",
+      label: "Select image to be rotated",
+      placeholder: "Please upload a image (.jpg, .jpeg, .png, .webp, .gif ....)",
+      mandatory: true,
+      type: "file",
+    },
+    {
+      name: "degree",
+      label: "Formats",
+      placeholder: "Choose from the list of options",
+      multiple: false,
+      mandatory: true,
+      type: "select",
+      options: [
+        {
+          value: "90",
+          label: "90° (right)",
+        },
+        {
+          value: "180",
+          label: "180° (right,right)",
+        },
+        {
+          value: "270",
+          label: "270° (left)",
+        },
+        
+      ],
+    },
+  ],
+  action: {
+    type: "invoke.function",
+    name: "imagetoolkitform",
+  },
+};
 const memeResponse = {
   type: "form",
   title: "ImageToolKit",
@@ -366,7 +413,7 @@ const grayScaleResponse = {
     {
       name: "grayscale",
       label: "Select image to be changed",
-      placeholder: "Please upload a image (.jpg, .jpeg, .png, ...)",
+      placeholder: "Please upload a image (.jpg, .jpeg, .png, .webp, .gif...)",
       mandatory: true,
       type: "file",
     },
@@ -479,6 +526,7 @@ module.exports = {
   errorResponse,
   pdfResponse,
   pdfResultResponse,
+  rotateResponse,
   funResponse,
   animeResponse,
   memeResponse,

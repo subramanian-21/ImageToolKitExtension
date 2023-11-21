@@ -14,6 +14,7 @@ const {
   grayScaleResponse,
   pdfResponse,
   ImageResponse,
+  rotateResponse,
   pdfResultResponse,
   funResponse,
   animeResponse,
@@ -148,6 +149,13 @@ const controller = async (req, res) => {
       }
       case "compresser": {
         const response = compresserResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case 'rotate':{
+        const response = rotateResponse;
         res.status(200).json({
           output: response,
         });
