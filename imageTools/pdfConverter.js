@@ -1,7 +1,7 @@
 const { PDFDocument } = require("pdf-lib");
 const fs = require("fs");
 const fetch = require("node-fetch");
-const axios = require("axios");
+const sharp = require('sharp')
 
 const pdfConverter = async (req, uniqueName) => {
   const images = req.body?.params?.form?.values?.pdfconverter?.files.map(
@@ -19,11 +19,15 @@ const pdfConverter = async (req, uniqueName) => {
   async function createPdf(k) {
     const page = pdfDoc.addPage();
     const jpgImageBytes = await fetch(k.url).then((res) => res.arrayBuffer());
+    const sharpImage = sharp(jpgImageBytes)
+   
     let jpgImage = null;
     if (k.format === "jpg" || k.format === "jpeg") {
-      jpgImage = await pdfDoc.embedJpg(jpgImageBytes);
+      sharpImage.jpeg({quality:50})
+      jpgImage = await pdfDoc.embedJpg(sharpImage);
     } else {
-      jpgImage = await pdfDoc.embedPng(jpgImageBytes);
+      sharpImage.png({quality:5})
+      jpgImage = await pdfDoc.embedPng(sharpImage);
     }
     const { width, height } = jpgImage.scale(1);
     page.setSize(width, height);
