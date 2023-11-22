@@ -23,11 +23,11 @@ const pdfConverter = async (req, uniqueName) => {
    
     let jpgImage = null;
     if (k.format === "jpg" || k.format === "jpeg") {
-      sharpImage.jpeg({quality:50})
-      jpgImage = await pdfDoc.embedJpg(sharpImage);
+      const changedImage = sharpImage.jpeg({quality:50}).toBuffer()
+      jpgImage = await pdfDoc.embedJpg(changedImage);
     } else {
-      sharpImage.png({quality:5})
-      jpgImage = await pdfDoc.embedPng(sharpImage);
+      const changedImage = sharpImage.png({quality:50}).toBuffer()
+      jpgImage = await pdfDoc.embedPng(changedImage);
     }
     const { width, height } = jpgImage.scale(1);
     page.setSize(width, height);
