@@ -143,7 +143,7 @@ const resizeResponse = {
     {
       name: "width",
       label: "Enter Custom Width",
-      placeholder: "We know you're forever young. But how old are you?",
+      placeholder: "Custom Width upto 4096",
       min: "0",
       max: "4096",
       mandatory: false,
@@ -152,7 +152,7 @@ const resizeResponse = {
     {
       name: "height",
       label: "Enter Custom Height",
-      placeholder: "We know you're forever young. But how old are you?",
+      placeholder: "Custom Height upto 2160",
       min: "0",
       max: "2160",
       mandatory: false,

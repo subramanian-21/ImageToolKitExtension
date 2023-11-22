@@ -22,6 +22,7 @@ const {
   memeCreatorResponse,
   unsupportedResponse,
 } = require("./responses");
+const imageResize = require("./imageTools/imageResize");
 
 const controller = async (req, res) => {
   if (req.body.params?.form?.values?.pdfconverter) {
@@ -54,6 +55,28 @@ const controller = async (req, res) => {
       const convert = converter(req, uniqueName);
       const url = `${serverUrl}/${uniqueName}`;
       const resp = ImageResponse("Image Format Converter", url);
+
+      res.status(200).json({
+        output: resp,
+      });
+    } catch (error) {
+      const resp = unsupportedResponse;
+      res.status(200).json({
+        output: resp,
+      });
+    }
+  }
+  if(req.body.params?.form?.values?.resize){
+    try {
+      const imageName = req.body.params.form?.values?.resize.files.name;
+      const format = imageName.split(".")[imageName.split(".").length - 1];
+      const timestamp = new Date().getTime();
+      const randomNumber = Math.floor(Math.random() * 1000) + 1;
+      const uniqueName = `${timestamp}_${randomNumber}.${format}`;
+
+      const resize = imageResize(req, uniqueName);
+      const url = `${serverUrl}/${uniqueName}`;
+      const resp = ImageResponse("Resize Image", url);
 
       res.status(200).json({
         output: resp,

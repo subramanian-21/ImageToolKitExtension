@@ -1,3 +1,3 @@
-const url = "https://0262-2401-4900-6340-61c8-cdb6-2ff6-f701-815d.ngrok.io"
+const url = "https://02c2-2401-4900-64f5-6e1c-8d37-7f6b-1346-2206.ngrok.io"
 
 module.exports = url
