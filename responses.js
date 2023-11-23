@@ -136,8 +136,6 @@ const resizeResponse = {
           value: "600x400",
           label: "600x400 - Email Newsletter",
         },
-       
-        
       ],
     },
     {
@@ -157,6 +155,12 @@ const resizeResponse = {
       max: "2160",
       mandatory: false,
       type: "number",
+    },
+    {
+      name: "lock",
+      label: "Lock aspect ratio",
+      value: false,
+      type: "toggle",
     },
   ],
   action: {
