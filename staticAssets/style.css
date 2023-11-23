@@ -1,4 +1,11 @@
-.shit{
-    background-color: blue;
-    color: red;
+*{
+    margin: 0;
+    
+}
+.body{
+    min-height: 100vh;
+    background-color: #181818;
+}
+h1{
+    text-align: center;
 }
