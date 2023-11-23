@@ -594,7 +594,7 @@ const unsupportedResponse = {
     {
       type: "text",
       title: "Error!",
-      data: "Oops! Error occured try again...",
+      data: "Oops!.. unsupported image format",
     },
   ],
   text: "# ImageToolKit",
