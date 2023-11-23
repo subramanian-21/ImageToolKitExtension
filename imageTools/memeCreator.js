@@ -10,7 +10,6 @@ const memeCreator = async (img, top, bottom, font) => {
     redirect: false,
   };
 
-  try {
     const response = await axios.post(
       "https://api.memegen.link/images/custom",
       postData,
@@ -31,9 +30,6 @@ const memeCreator = async (img, top, bottom, font) => {
       ],
       text: "# ImageToolKit",
     };
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
+  
 };
 module.exports = memeCreator;

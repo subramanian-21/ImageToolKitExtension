@@ -3,24 +3,15 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 
 const pdfConverter = async (req, uniqueName) => {
-  let images;
-  console.log(req.body?.params?.form?.values?.pdfconverter?.files)
-  if(req.body?.params?.form?.values?.pdfconverter?.files.length>0){
-    images = req.body?.params?.form?.values?.pdfconverter?.files.map(
-      (k) => {
-        return {
-          url: k.url,
-          format: k.contenttype.split("/")[1],
-        };
-      }
-    );
-  }else{
-    images = {
-      url:req.body?.params?.form?.values?.pdfconverter?.files.url,
-      format :req.body?.params?.form?.values?.pdfconverter?.files.contenttype.split("/")[1] 
-    }
-  }
   
+  console.log(req.body?.params?.form?.values?.pdfconverter?.files);
+
+  const images = req.body?.params?.form?.values?.pdfconverter?.files.map((k) => {
+    return {
+      url: k.url,
+      format: k.contenttype.split("/")[1],
+    };
+  });
 
   const pdfDoc = await PDFDocument.create();
 
@@ -43,7 +34,6 @@ const pdfConverter = async (req, uniqueName) => {
       height,
     });
   }
-
 
   await Promise.all(images.map(async (k) => await createPdf(k)));
   fs.writeFileSync(`./public/${uniqueName}`, await pdfDoc.save());

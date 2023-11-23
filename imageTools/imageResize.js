@@ -1,6 +1,5 @@
 const sharp = require("sharp");
 const imageResize = async (req, name) => {
-  try {
     let width,height;
     const imageUrl = req.body.params.form?.values?.resize.files.url;
     if (req.body.params.form?.values?.resizes.value !=='0') {
@@ -19,11 +18,9 @@ const imageResize = async (req, name) => {
 
       await resizedImage
         .withMetadata()
-        .resize({ width: width, height: height })
+        .resize({ width: width, height: height,fit:'fill' })
         .toFile(`./public/${name}`);
     
-  } catch (error) {
-    console.log(error);
-  }
+
 };
 module.exports = imageResize;

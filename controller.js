@@ -33,7 +33,7 @@ const controller = async (req, res) => {
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
       const url = `${serverUrl}/${uniqueName}`;
 
-      const pdf = pdfConverter(req, uniqueName);
+      const pdf = await pdfConverter(req, uniqueName);
       const resp = pdfResultResponse("Images To PDF converter", url);
       res.status(200).json({
         output: resp,
@@ -52,7 +52,7 @@ const controller = async (req, res) => {
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
 
-      const convert = converter(req, uniqueName);
+      const convert =await converter(req, uniqueName);
       const url = `${serverUrl}/${uniqueName}`;
       const resp = ImageResponse("Image Format Converter", url);
 
@@ -74,7 +74,7 @@ const controller = async (req, res) => {
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
 
-      const resize = imageResize(req, uniqueName);
+      const resize = await imageResize(req, uniqueName);
       const url = `${serverUrl}/${uniqueName}`;
       const resp = ImageResponse("Resize Image", url);
 
@@ -92,12 +92,12 @@ const controller = async (req, res) => {
   if (req.body.params?.form?.values?.compresser) {
     try {
       const imageName = req.body.params.form?.values?.compresser.files.name;
-      const format = imageName.split(".")[imageName.split(".").length - 1];
+      const format = imageName.split(".")[imageName.split(".").length - 1].toLowerCase();
       const timestamp = new Date().getTime();
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
 
-      const compress = compresser(req, uniqueName, format);
+      const compress =await compresser(req, uniqueName, format);
       const url = `${serverUrl}/${uniqueName}`;
       const resp = ImageResponse("Image Compresser", url);
 
@@ -119,7 +119,7 @@ const controller = async (req, res) => {
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
 
-      const rotate = rotateImage(req, uniqueName);
+      const rotate =await rotateImage(req, uniqueName);
       const url = `${serverUrl}/${uniqueName}`;
       const resp = ImageResponse("Rotate Image", url);
 

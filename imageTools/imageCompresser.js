@@ -1,14 +1,10 @@
 const sharp = require("sharp");
-const compresser = async (req, uniqueName, formatt) => {
-  try {
+const compresser = async (req, uniqueName, format) => {
     const imageUrl = req.body.params.form?.values?.compresser.files.url;
     const size = req.body.params.form?.values?.size;
 
 
     const response = await fetch(imageUrl);
-    const format = uniqueName
-      .split(".")
-      [uniqueName.split(".").length - 1].toLowerCase();
     if (!response.ok) {
       throw new Error(`Failed to fetch image. Status: ${response.status}`);
     }
@@ -30,8 +26,6 @@ const compresser = async (req, uniqueName, formatt) => {
     await resizedImage.withMetadata().toFile(`./public/${uniqueName}`);
 
     console.log("Image resizing and saving complete");
-  } catch (error) {
-    console.log(error);
-  }
+ 
 };
 module.exports = compresser;
