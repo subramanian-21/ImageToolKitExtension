@@ -4,8 +4,15 @@
 }
 .body{
     min-height: 100vh;
-    background-color: #181818;
+    background-color: hsl(0, 0%, 9%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
-h1{
+h1,h2{
     text-align: center;
+    
+    padding: 10px;
 }
