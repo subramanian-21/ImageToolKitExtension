@@ -13,6 +13,7 @@ const {
   compresserResponse,
   grayScaleResponse,
   pdfResponse,
+  sampleResp,
   ImageResponse,
   rotateResponse,
   resizeResponse,
@@ -25,6 +26,7 @@ const {
 const imageResize = require("./imageTools/imageResize");
 
 const controller = async (req, res) => {
+
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const timestamp = new Date().getTime();
@@ -33,15 +35,18 @@ const controller = async (req, res) => {
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
       const url = `${serverUrl}/${uniqueName}`;
       const images = req.body?.params?.form?.values?.pdfconverter?.files;
-      for (i = 0; i < images.length; i++) {
+      images.map(k=>{
         const format =
-          images[i].name.split(".")[images.name.split(".").length - 1];
-        if (format !== "jpg" || format !== "jpeg" || format !== "png") {
+          k.name.split(".")[k.name.split(".").length - 1];
+          console.log(format)
+        if (format == "jpg" || format == "jpeg" || format == "png") {
+        
+        }else{
           return res.status(200).json({
             output: unsupportedResponse,
           });
         }
-      }
+      })
       const pdf = pdfConverter(req, uniqueName);
       const resp = pdfResultResponse("Images To PDF converter", url);
       res.status(200).json({
@@ -340,7 +345,7 @@ const controller = async (req, res) => {
   if (req.body.handler.name === "Help") {
     const response = helpResponse;
     res.status(200).json({
-      output: response,
+      output: sampleResp,
     });
   }
   if (req.body.handler.name === "Fun") {

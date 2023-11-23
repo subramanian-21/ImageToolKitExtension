@@ -603,6 +603,24 @@ const unsupportedResponse = {
   ],
   text: "# ImageToolKit",
 };
+const sampleResp = {
+  slides: [
+    {
+      type: "text",
+      title: "Title for your Text",
+      buttons: [
+        {
+          label: "Button 1",
+          hint: "",
+          action: { type: "invoke.function", data: { name: "imagetoolkitform" } },
+          key: "submit_key",
+        },
+      ],
+      data: "Zoho Corporation, founded in 1996, known for pioneering software as a service (SAAS) model.",
+    },
+  ],
+  text: "Your message on the card goes here!",
+};
 
 module.exports = {
   helpResponse,
@@ -615,6 +633,7 @@ module.exports = {
   pdfResponse,
   resizeResponse,
   pdfResultResponse,
+  sampleResp,
   rotateResponse,
   funResponse,
   animeResponse,
