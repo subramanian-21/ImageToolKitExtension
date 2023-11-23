@@ -12,7 +12,7 @@ const converter = async (req, name) => {
 
     await resizedImage.withMetadata().toFile(`./public/${name}`);
 
-    console.log("Image resizing and saving complete");
+    console.log("Image saving complete");
 
 };
 module.exports = converter;

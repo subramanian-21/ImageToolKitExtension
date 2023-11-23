@@ -4,8 +4,6 @@ const fetch = require("node-fetch");
 
 const pdfConverter = async (req, uniqueName) => {
   
-  console.log(req.body?.params?.form?.values?.pdfconverter?.files);
-
   const images = req.body?.params?.form?.values?.pdfconverter?.files.map((k) => {
     return {
       url: k.url,

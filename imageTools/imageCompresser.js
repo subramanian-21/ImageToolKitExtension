@@ -25,7 +25,7 @@ const compresser = async (req, uniqueName, format) => {
     }
     await resizedImage.withMetadata().toFile(`./public/${uniqueName}`);
 
-    console.log("Image resizing and saving complete");
+    console.log("Image saving complete");
  
 };
 module.exports = compresser;
