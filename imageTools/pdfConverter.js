@@ -19,8 +19,12 @@ const pdfConverter = async (req, uniqueName) => {
     const processedImage = await sharpImage.toBuffer();
 
     if (format === "jpg" || format === "jpeg") {
+      const sharpImage = sharp(imageBuffer).withMetadata().jpeg({quality:50});
+    const processedImage = await sharpImage.toBuffer();
       return pdfDoc.embedJpg(processedImage);
     } else {
+      const sharpImage = sharp(imageBuffer).withMetadata().png({quality:5});
+      const processedImage = await sharpImage.toBuffer();
       return pdfDoc.embedPng(processedImage);
     }
   };
