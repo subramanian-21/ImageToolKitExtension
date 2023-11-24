@@ -513,7 +513,7 @@ const grayScaleResponse = {
   },
 };
 
-const ImageResponse = (name, url) => {
+const ImageResponse = (name, url,text,uName) => {
   return {
     text: `# ${name}`,
     slides: [
@@ -541,14 +541,10 @@ const ImageResponse = (name, url) => {
       {
         type: "text",
         title: "Note :",
-        data: "The Larger the image size => more the waiting time",
-      },
-      {
-        type: "text",
-        title: "",
+        data: "The Larger the image size => more the waiting time\n\n*Convert Next*",
         buttons: [
           {
-            label: "Next pdf",
+            label: text,
             hint: "",
             action: {
               type: "invoke.function",
@@ -556,11 +552,11 @@ const ImageResponse = (name, url) => {
                 name: "imagetoolkitform",
               },
             },
-            key: "",
+            key: uName,
           },
         ],
-        data: "Convert Next",
       },
+      
       {
         type: "text",
         title: "Hint :",
@@ -569,7 +565,7 @@ const ImageResponse = (name, url) => {
     ],
   };
 };
-const pdfResultResponse = (name, url) => {
+const pdfResultResponse = (name, url,text,uName) => {
   return {
     text: `# ${name}`,
     slides: [
@@ -596,14 +592,28 @@ const pdfResultResponse = (name, url) => {
       {
         type: "text",
         title: "Note :",
-        data: "The Larger the image size => more the waiting time\n*It is recomended to compress images before converting into PDF*",
+        data: "The Larger the image size => more the waiting time\n*It is recomended to compress images before converting into PDF*\n\n*Convert Next*",
+        buttons: [
+          {
+            label: text,
+            hint: "",
+            action: {
+              type: "invoke.function",
+              data: {
+                name: "imagetoolkitform",
+              },
+            },
+            key: uName,
+          },
+        ],
       },
+
     ],
   };
 };
 const errorResponse = (text, uName) => {
   return {
-    text: "# Error",
+    text: "# ImageToolKit",
     slides: [
       {
         type: "text",

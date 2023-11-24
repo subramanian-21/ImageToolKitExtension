@@ -21,23 +21,21 @@ const {
   animeResponse,
   errorResponse,
   memeCreatorResponse,
-  unsupportedResponse,
 } = require("./responses");
 const imageResize = require("./imageTools/imageResize");
 
 const controller = async (req, res) => {
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
- 
       const images = req.body?.params?.form?.values?.pdfconverter?.files;
       const unsupportedFormats = images.filter((k) => {
         const format = k.name.split(".").pop().toLowerCase();
         return !(format === "jpg" || format === "jpeg" || format === "png");
       });
-  
+
       if (unsupportedFormats.length > 0) {
         return res.status(200).json({
-          output: errorResponse('Images to PDF','pdfconverter'),
+          output: errorResponse("Images to PDF", "pdfconverter"),
         });
       }
       const timestamp = new Date().getTime();
@@ -46,7 +44,12 @@ const controller = async (req, res) => {
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
       const url = `${serverUrl}/${uniqueName}`;
       const pdf = pdfConverter(req, uniqueName);
-      const resp = pdfResultResponse("Images To PDF converter", url);
+      const resp = pdfResultResponse(
+        "Images To PDF converter",
+        url,
+        "Images to PDF",
+        "pdfconverter"
+      );
       res.status(200).json({
         output: resp,
       });
@@ -73,14 +76,19 @@ const controller = async (req, res) => {
       ) {
         const convert = converter(req, uniqueName);
         const url = `${serverUrl}/${uniqueName}`;
-        const resp = ImageResponse("Image Format Converter", url);
+        const resp = ImageResponse(
+          "Image Format Converter",
+          url,
+          "Image Converter",
+          "converter"
+        );
 
         res.status(200).json({
           output: resp,
         });
       } else {
         return res.status(200).json({
-          output: errorResponse('Image Converter','converter'),
+          output: errorResponse("Image Converter", "converter"),
         });
       }
     } catch (error) {
@@ -103,14 +111,19 @@ const controller = async (req, res) => {
       ) {
         const resize = imageResize(req, uniqueName);
         const url = `${serverUrl}/${uniqueName}`;
-        const resp = ImageResponse("Resize Image", url);
+        const resp = ImageResponse(
+          "Resize Image",
+          url,
+          "Resize Image",
+          "resize"
+        );
 
         res.status(200).json({
           output: resp,
         });
       } else {
         return res.status(200).json({
-          output: errorResponse('Resize Image','resize'),
+          output: errorResponse("Resize Image", "resize"),
         });
       }
     } catch (error) {
@@ -136,14 +149,19 @@ const controller = async (req, res) => {
       ) {
         const compress = compresser(req, uniqueName, format);
         const url = `${serverUrl}/${uniqueName}`;
-        const resp = ImageResponse("Image Compresser", url);
+        const resp = ImageResponse(
+          "Image Compresser",
+          url,
+          "Image Compresser",
+          "compresser"
+        );
 
         res.status(200).json({
           output: resp,
         });
       } else {
         return res.status(200).json({
-          output: errorResponse('Image Compresser','compresser')
+          output: errorResponse("Image Compresser", "compresser"),
         });
       }
     } catch (error) {
@@ -166,14 +184,19 @@ const controller = async (req, res) => {
       ) {
         const rotate = rotateImage(req, uniqueName);
         const url = `${serverUrl}/${uniqueName}`;
-        const resp = ImageResponse("Rotate Image", url);
+        const resp = ImageResponse(
+          "Rotate Image",
+          url,
+          "Rotate Image",
+          "rotate"
+        );
 
         res.status(200).json({
           output: resp,
         });
       } else {
         return res.status(200).json({
-          output: errorResponse('Rotate Image','rotate')
+          output: errorResponse("Rotate Image", "rotate"),
         });
       }
     } catch (error) {
@@ -205,7 +228,7 @@ const controller = async (req, res) => {
         });
       } else {
         return res.status(200).json({
-          output: errorResponse('Meme Creator','memeCreator')
+          output: errorResponse("Meme Creator", "memeCreator"),
         });
       }
     } catch (error) {
@@ -228,19 +251,22 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         const grayscaleConverter = grayscale(req, uniqueName, format);
-      const url = `${serverUrl}/${uniqueName}`;
-      const resp = ImageResponse("Grayscale Converter", url);
+        const url = `${serverUrl}/${uniqueName}`;
+        const resp = ImageResponse(
+          "Grayscale Converter",
+          url,
+          "Grayscale",
+          "grayscale"
+        );
 
-      res.status(200).json({
-        output: resp,
-      });
-
-      }else {
+        res.status(200).json({
+          output: resp,
+        });
+      } else {
         return res.status(200).json({
-          output: errorResponse('Grayscale','grayscale')
+          output: errorResponse("Grayscale", "grayscale"),
         });
       }
-      
     } catch (error) {
       console.log(error);
     }
@@ -308,6 +334,53 @@ const controller = async (req, res) => {
         break;
       }
 
+      case "resize": {
+        const response = resizeResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+    }
+  }
+
+  if (req.body.params?.arguments?.key) {
+    switch (req.body.params?.arguments?.key) {
+      case "converter": {
+        const response = converterResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "compresser": {
+        const response = compresserResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "rotate": {
+        const response = rotateResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "grayscale": {
+        const response = grayScaleResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "pdfconverter": {
+        const response = pdfResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
       case "resize": {
         const response = resizeResponse;
         res.status(200).json({
