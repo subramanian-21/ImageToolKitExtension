@@ -53,10 +53,7 @@ const controller = async (req, res) => {
         output: resp,
       });
     } catch (error) {
-      const resp = unsupportedResponse;
-      res.status(200).json({
-        output: resp,
-      });
+      console.log(error)
     }
   }
   if (req.body.params?.form?.values?.converter) {
@@ -89,10 +86,7 @@ const controller = async (req, res) => {
         });
       }
     } catch (error) {
-      const resp = unsupportedResponse;
-      res.status(200).json({
-        output: resp,
-      });
+      console.log(error)
     }
   }
   if (req.body.params?.form?.values?.resize) {
@@ -122,10 +116,7 @@ const controller = async (req, res) => {
         });
       }
     } catch (error) {
-      const resp = unsupportedResponse;
-      res.status(200).json({
-        output: resp,
-      });
+      console.log(error)
     }
   }
 
@@ -158,10 +149,7 @@ const controller = async (req, res) => {
         });
       }
     } catch (error) {
-      const resp = unsupportedResponse;
-      res.status(200).json({
-        output: resp,
-      });
+      console.log(error)
     }
   }
   if (req.body.params?.form?.values?.rotate) {
@@ -191,10 +179,7 @@ const controller = async (req, res) => {
         });
       }
     } catch (error) {
-      const resp = unsupportedResponse;
-      res.status(200).json({
-        output: resp,
-      });
+      console.log(error)
     }
   }
 
@@ -228,9 +213,7 @@ const controller = async (req, res) => {
       }
      
     } catch (error) {
-      return res.status(200).json({
-        output: unsupportedResponse,
-      });
+      console.log(error)
     }
   }
 
@@ -257,10 +240,7 @@ const controller = async (req, res) => {
         output: resp,
       });
     } catch (error) {
-      const resp = unsupportedResponse;
-      res.status(200).json({
-        output: resp,
-      });
+      console.log(error)
     }
   }
 
