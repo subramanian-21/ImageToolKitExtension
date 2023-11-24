@@ -15,8 +15,6 @@ const pdfConverter = async (req, uniqueName) => {
 
   const embedImage = async (url, format) => {
     const imageBuffer = await fetch(url).then((res) => res.buffer());
-    const sharpImage = sharp(imageBuffer).withMetadata();
-    const processedImage = await sharpImage.toBuffer();
 
     if (format === "jpg" || format === "jpeg") {
       const sharpImage = sharp(imageBuffer).withMetadata().jpeg({quality:50});
