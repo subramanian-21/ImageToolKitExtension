@@ -36,6 +36,10 @@ const optionsResponse = {
           label: "Image Compresser",
         },
         {
+          value: "join",
+          label: "Join Images",
+        },
+        {
           value: "rotate",
           label: "Rotate Image",
         },
@@ -478,7 +482,7 @@ const pdfResponse = {
   inputs: [
     {
       name: "pdfconverter",
-      label: "Select image to be changed",
+      label: "Select images",
       placeholder: "Please upload a image (.jpg, .jpeg, .png)",
       multiple: true,
       max_selections: 8,
@@ -507,6 +511,48 @@ const grayScaleResponse = {
       type: "file",
     },
   ],
+  action: {
+    type: "invoke.function",
+    name: "imagetoolkitform",
+  },
+};
+const joinResponse = {
+  type: "form",
+  title: "ImageToolKit",
+  name: "pdfconverter",
+  hint: "*Upload two images\n*Join it vertically or horizontally",
+  button_label: "Render",
+  inputs: [
+    {
+      name: "join",
+      label: "Select two images",
+      placeholder: "Please upload a image(.jpg, .jpeg, .png, .gif, .tiff, .webp)",
+      multiple: true,
+      max_selections: 2,
+      mandatory: true,
+      type: "file",
+    },
+    {
+      name: "orient",
+      label: "Select Join Option",
+      placeholder: "Choose orientation",
+      multiple: false,
+      mandatory: true,
+      type: "select",
+      options: [
+        {
+          value: "horizontal",
+          label: "Horizontal Join",
+        },
+        {
+          value: "vertical",
+          label: "Vertical Join",
+        },
+      ],
+    },
+
+  ],
+
   action: {
     type: "invoke.function",
     name: "imagetoolkitform",
@@ -674,6 +720,7 @@ module.exports = {
   compresserResponse,
   grayScaleResponse,
   ImageResponse,
+  joinResponse,
   errorResponse,
   pdfResponse,
   resizeResponse,

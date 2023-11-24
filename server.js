@@ -10,7 +10,7 @@ app.use((req, res) => {
   if (req.path === "/") {
     res.send('<h1 style="text-align:center">ImageToolKit</h1>');
   } else {
-     res.sendFile(__dirname + "/staticAssets/index.html");
+     res.sendFile(__dirname + "/statciAssets/index.html");
   }
 });
 

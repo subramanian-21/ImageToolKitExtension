@@ -16,6 +16,7 @@ const {
   ImageResponse,
   rotateResponse,
   resizeResponse,
+  joinResponse,
   pdfResultResponse,
   funResponse,
   animeResponse,
@@ -57,6 +58,9 @@ const controller = async (req, res) => {
     } catch (error) {
       console.log(error);
     }
+  }
+  if(req.body.params?.form?.values?.join){
+    console.log(req.body)
   }
 
   if (req.body.params?.form?.values?.converter) {
@@ -327,6 +331,12 @@ const controller = async (req, res) => {
           output: response,
         });
         break;
+      }
+      case 'join':{
+        const response = joinResponse
+        res.status(200).json({
+          output: response,
+        });
       }
 
       case "memeCreator": {
