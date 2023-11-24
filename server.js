@@ -9,9 +9,9 @@ app.use("/",require('./router'))
 app.use((req, res, next) => {
     if (req.path!=='/') {
         res.sendFile(__dirname + '/staticAssets/index.html');
-      } else {
-        next();
-      }
+    } else {
+        res.write('<h1 style="text-align-center">ImageToolKit</h1>')
+    }
   });
 
 app.listen(5000,()=>{
