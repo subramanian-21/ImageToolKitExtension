@@ -513,7 +513,7 @@ const grayScaleResponse = {
   },
 };
 
-const ImageResponse = (name, url,text,uName) => {
+const ImageResponse = (name, url, text, uName) => {
   return {
     text: `# ${name}`,
     slides: [
@@ -541,7 +541,7 @@ const ImageResponse = (name, url,text,uName) => {
       {
         type: "text",
         title: "Note :",
-        data: "The Larger the image size => more the waiting time\n\n*Convert Next*",
+        data: "The Larger the image size => more the waiting time\n\n*Convert Next :*",
         buttons: [
           {
             label: text,
@@ -556,7 +556,7 @@ const ImageResponse = (name, url,text,uName) => {
           },
         ],
       },
-      
+
       {
         type: "text",
         title: "Hint :",
@@ -565,7 +565,7 @@ const ImageResponse = (name, url,text,uName) => {
     ],
   };
 };
-const pdfResultResponse = (name, url,text,uName) => {
+const pdfResultResponse = (name, url, text, uName) => {
   return {
     text: `# ${name}`,
     slides: [
@@ -592,7 +592,7 @@ const pdfResultResponse = (name, url,text,uName) => {
       {
         type: "text",
         title: "Note :",
-        data: "The Larger the image size => more the waiting time\n*It is recomended to compress images before converting into PDF*\n\n*Convert Next*",
+        data: "The Larger the image size => more the waiting time\n*It is recomended to compress images before converting into PDF*\n\n*Convert Next :*",
         buttons: [
           {
             label: text,
@@ -607,7 +607,6 @@ const pdfResultResponse = (name, url,text,uName) => {
           },
         ],
       },
-
     ],
   };
 };
@@ -618,7 +617,7 @@ const errorResponse = (text, uName) => {
       {
         type: "text",
         title: "Error",
-        data: "Oops!.. unsupported image format\n\n*Convert Next*",
+        data: "Oops!.. unsupported image format\n\n*Convert Next :*",
         buttons: [
           {
             label: text,

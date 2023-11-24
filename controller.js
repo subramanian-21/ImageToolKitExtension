@@ -25,6 +25,8 @@ const {
 const imageResize = require("./imageTools/imageResize");
 
 const controller = async (req, res) => {
+
+
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const images = req.body?.params?.form?.values?.pdfconverter?.files;
@@ -57,6 +59,8 @@ const controller = async (req, res) => {
       console.log(error);
     }
   }
+
+
   if (req.body.params?.form?.values?.converter) {
     try {
       const formatt = req.body.params.form?.values?.format.value;
@@ -95,6 +99,8 @@ const controller = async (req, res) => {
       console.log(error);
     }
   }
+
+  
   if (req.body.params?.form?.values?.resize) {
     try {
       const imageName = req.body.params.form?.values?.resize.files.name;
@@ -400,7 +406,7 @@ const controller = async (req, res) => {
   if (req.body.handler.name === "Help") {
     const response = helpResponse;
     res.status(200).json({
-      output: helpResponse,
+      output: response,
     });
   }
   if (req.body.handler.name === "Fun") {
@@ -410,4 +416,5 @@ const controller = async (req, res) => {
     });
   }
 };
+
 module.exports = controller;
