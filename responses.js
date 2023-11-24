@@ -516,10 +516,13 @@ const grayScaleResponse = {
 const ImageResponse = (name, url, text, uName) => {
   return {
     text: `# ${name}`,
+    card: {
+      theme: "modern-inline",
+    },
     slides: [
       {
         type: "text",
-        title: "ImageToolKit",
+        title: "",
         buttons: [
           {
             label: "Go to image",
@@ -535,13 +538,7 @@ const ImageResponse = (name, url, text, uName) => {
       {
         type: "text",
         title: "",
-        data: "if it doesn't work...\nwait for few seconds, image is rendering",
-      },
-
-      {
-        type: "text",
-        title: "Note :",
-        data: "The Larger the image size => more the waiting time\n\n*Convert Next :*",
+        data: "if it doesn't work...\nwait for few seconds\n*The Larger image size => more waiting time*\n\n*Convert Next :*",
         buttons: [
           {
             label: text,
@@ -557,21 +554,31 @@ const ImageResponse = (name, url, text, uName) => {
         ],
       },
 
-      {
-        type: "text",
-        title: "Hint :",
-        data: "Click on 'Go to image'\nRight click on image and select 'Save image as...'",
-      },
+      // {
+      //   type: "text",
+      //   title: "Note :",
+      //   data: "The Larger the image size => more the waiting time\n\n*Convert Next :*",
+
+      // },
+
+      // {
+      //   type: "text",
+      //   title: "Hint :",
+      //   data: "Click on 'Go to image'\nRight click on image and select 'Save image as...'",
+      // },
     ],
   };
 };
 const pdfResultResponse = (name, url, text, uName) => {
   return {
     text: `# ${name}`,
+    card: {
+      theme: "modern-inline",
+    },
     slides: [
       {
         type: "text",
-        title: "ImageToolKit",
+        title: "",
         buttons: [
           {
             label: "Open PDF",
@@ -587,12 +594,7 @@ const pdfResultResponse = (name, url, text, uName) => {
       {
         type: "text",
         title: "",
-        data: "if it doesn't work...\nwait for few seconds, PDF is rendering",
-      },
-      {
-        type: "text",
-        title: "Note :",
-        data: "The Larger the image size => more the waiting time\n*It is recomended to compress images before converting into PDF*\n\n*Convert Next :*",
+        data: "if it doesn't work...\nwait for few seconds PDF is rendering\nThe Larger image size => more waiting time\n*It is recomended to compress images before converting into PDF*\n\n*Convert Next :*",
         buttons: [
           {
             label: text,
@@ -607,6 +609,24 @@ const pdfResultResponse = (name, url, text, uName) => {
           },
         ],
       },
+      // {
+      //   type: "text",
+      //   title: "Note :",
+      //   data: "The Larger image size => more waiting time\n*It is recomended to compress images before converting into PDF*\n\n*Convert Next :*",
+      //   buttons: [
+      //     {
+      //       label: text,
+      //       hint: "",
+      //       action: {
+      //         type: "invoke.function",
+      //         data: {
+      //           name: "imagetoolkitform",
+      //         },
+      //       },
+      //       key: uName,
+      //     },
+      //   ],
+      // },
     ],
   };
 };

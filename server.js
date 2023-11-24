@@ -6,7 +6,7 @@ app.use(express.static("./public"))
 app.use(express.static('./staticAssets'))
 
 app.use("/",require('./router'))
-app.use((req, res, next) => {
+app.use((req, res) => {
     if (req.path!=='/') {
         res.sendFile(__dirname + '/staticAssets/index.html');
     } else {

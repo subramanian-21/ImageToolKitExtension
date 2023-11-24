@@ -25,8 +25,18 @@ const {
 const imageResize = require("./imageTools/imageResize");
 
 const controller = async (req, res) => {
-
-
+  console.log(req.body);
+  if (req.body?.handler?.type === "view_handler") {
+    return res.status(200).json({
+      output:{type: "applet",
+      data_type: "web_view",
+      tabs: [{ label: "Home", id: "homeTab" }],
+      web_view: {
+        url: "https://imagetoolkitapp.onrender.com/#/",
+      },
+      active_tab: "homeTab",
+  }});
+  }
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const images = req.body?.params?.form?.values?.pdfconverter?.files;
@@ -59,7 +69,6 @@ const controller = async (req, res) => {
       console.log(error);
     }
   }
-
 
   if (req.body.params?.form?.values?.converter) {
     try {
@@ -100,7 +109,6 @@ const controller = async (req, res) => {
     }
   }
 
-  
   if (req.body.params?.form?.values?.resize) {
     try {
       const imageName = req.body.params.form?.values?.resize.files.name;
