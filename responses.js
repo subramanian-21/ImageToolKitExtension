@@ -537,10 +537,29 @@ const ImageResponse = (name, url) => {
         title: "",
         data: "if it doesn't work...\nwait for few seconds, image is rendering",
       },
+
       {
         type: "text",
         title: "Note :",
         data: "The Larger the image size => more the waiting time",
+      },
+      {
+        type: "text",
+        title: "",
+        buttons: [
+          {
+            label: "Next pdf",
+            hint: "",
+            action: {
+              type: "invoke.function",
+              data: {
+                name: "imagetoolkitform",
+              },
+            },
+            key: "",
+          },
+        ],
+        data: "Convert Next",
       },
       {
         type: "text",
@@ -582,15 +601,30 @@ const pdfResultResponse = (name, url) => {
     ],
   };
 };
-const errorResponse = {
-  text: "# Error",
-  slides: [
-    {
-      type: "text",
-      title: "ImageToolKit",
-      data: "Sorry Error Occured!\ntry again...",
-    },
-  ],
+const errorResponse = (text, uName) => {
+  return {
+    text: "# Error",
+    slides: [
+      {
+        type: "text",
+        title: "Error",
+        data: "Oops!.. unsupported image format\n\n*Convert Next*",
+        buttons: [
+          {
+            label: text,
+            hint: "",
+            action: {
+              type: "invoke.function",
+              data: {
+                name: "imagetoolkitform",
+              },
+            },
+            key: uName,
+          },
+        ],
+      },
+    ],
+  };
 };
 
 const unsupportedResponse = {

@@ -13,47 +13,45 @@ const {
   compresserResponse,
   grayScaleResponse,
   pdfResponse,
-  sampleResp,
   ImageResponse,
   rotateResponse,
   resizeResponse,
   pdfResultResponse,
   funResponse,
   animeResponse,
+  errorResponse,
   memeCreatorResponse,
   unsupportedResponse,
 } = require("./responses");
 const imageResize = require("./imageTools/imageResize");
 
 const controller = async (req, res) => {
-
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
+ 
+      const images = req.body?.params?.form?.values?.pdfconverter?.files;
+      const unsupportedFormats = images.filter((k) => {
+        const format = k.name.split(".").pop().toLowerCase();
+        return !(format === "jpg" || format === "jpeg" || format === "png");
+      });
+  
+      if (unsupportedFormats.length > 0) {
+        return res.status(200).json({
+          output: errorResponse('Images to PDF','pdfconverter'),
+        });
+      }
       const timestamp = new Date().getTime();
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const format = "pdf";
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
       const url = `${serverUrl}/${uniqueName}`;
-      const images = req.body?.params?.form?.values?.pdfconverter?.files;
-      images.map(k=>{
-        const format =
-          k.name.split(".")[k.name.split(".").length - 1];
-          console.log(format)
-        if (format == "jpg" || format == "jpeg" || format == "png") {
-        
-        }else{
-          return res.status(200).json({
-            output: unsupportedResponse,
-          });
-        }
-      })
       const pdf = pdfConverter(req, uniqueName);
       const resp = pdfResultResponse("Images To PDF converter", url);
       res.status(200).json({
         output: resp,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
   if (req.body.params?.form?.values?.converter) {
@@ -82,11 +80,11 @@ const controller = async (req, res) => {
         });
       } else {
         return res.status(200).json({
-          output: unsupportedResponse,
+          output: errorResponse('Image Converter','converter'),
         });
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
   if (req.body.params?.form?.values?.resize) {
@@ -112,11 +110,11 @@ const controller = async (req, res) => {
         });
       } else {
         return res.status(200).json({
-          output: unsupportedResponse,
+          output: errorResponse('Resize Image','resize'),
         });
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -145,11 +143,11 @@ const controller = async (req, res) => {
         });
       } else {
         return res.status(200).json({
-          output: unsupportedResponse,
+          output: errorResponse('Image Compresser','compresser')
         });
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
   if (req.body.params?.form?.values?.rotate) {
@@ -175,11 +173,11 @@ const controller = async (req, res) => {
         });
       } else {
         return res.status(200).json({
-          output: unsupportedResponse,
+          output: errorResponse('Rotate Image','rotate')
         });
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -201,19 +199,17 @@ const controller = async (req, res) => {
           req.body.params?.form?.values?.textBottom,
           req.body.params?.form?.values?.font?.value
         );
-  
+
         res.status(200).json({
           output: response,
         });
-       
-      }else{
+      } else {
         return res.status(200).json({
-          output: unsupportedResponse,
+          output: errorResponse('Meme Creator','memeCreator')
         });
       }
-     
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -231,16 +227,22 @@ const controller = async (req, res) => {
         format == "webp" ||
         format == "gif"
       ) {
-      }
-      const grayscaleConverter = grayscale(req, uniqueName, format);
+        const grayscaleConverter = grayscale(req, uniqueName, format);
       const url = `${serverUrl}/${uniqueName}`;
       const resp = ImageResponse("Grayscale Converter", url);
 
       res.status(200).json({
         output: resp,
       });
+
+      }else {
+        return res.status(200).json({
+          output: errorResponse('Grayscale','grayscale')
+        });
+      }
+      
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
 
@@ -325,7 +327,7 @@ const controller = async (req, res) => {
   if (req.body.handler.name === "Help") {
     const response = helpResponse;
     res.status(200).json({
-      output: sampleResp,
+      output: helpResponse,
     });
   }
   if (req.body.handler.name === "Fun") {
