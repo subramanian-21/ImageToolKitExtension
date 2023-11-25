@@ -93,7 +93,7 @@ const resizeResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "resize",
-  hint: "resize any (JPG, JPEG, PNG, WEBP, GIF...) of the image formats\n*Upload image of <4mb",
+  hint: "resize any (JPG, JPEG, PNG, WEBP, GIF...) of the image formats\n*Upload image of < 10mb",
   button_label: "Render",
   inputs: [
     {
@@ -177,7 +177,7 @@ const converterResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "converter",
-  hint: "convert Image from JPG, JPEG, PNG, WEBP, GIF... to any of the formats\n*upload image < 4mb",
+  hint: "convert Image from JPG, JPEG, PNG, WEBP, GIF... to any of the formats\n*upload image of < 10mb",
   button_label: "Render",
   inputs: [
     {
@@ -312,7 +312,7 @@ const rotateResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "rotate",
-  hint: "Orient images to 90, 180, 270 degrees\nUpload image < 4mb",
+  hint: "Orient images to 90, 180, 270 degrees\n*Upload images of < 1mb",
   button_label: "Render",
   inputs: [
     {
@@ -455,7 +455,7 @@ const compresserResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "compresser",
-  hint: "Compress Size of Image without reducing the Quality",
+  hint: "Compress Size of Image without reducing the Quality\n*Upload images of < 10mb",
   button_label: "Render",
   inputs: [
     {
@@ -484,7 +484,7 @@ const pdfResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "pdfconverter",
-  hint: "*Please upload a image (.jpg, .jpeg, .png Only)\n*Upload images of < 500kb\n*Compress it before converting into pdf",
+  hint: "*Please upload a image (.jpg, .jpeg, .png Only)\n*Upload images of < 1mb\n*Compress it before converting into pdf",
   button_label: "Render",
   inputs: [
     {
@@ -492,7 +492,7 @@ const pdfResponse = {
       label: "Select images",
       placeholder: "Please upload a image (.jpg, .jpeg, .png)",
       multiple: true,
-      max_selections: 8,
+      max_selections: 10,
       mandatory: true,
       type: "file",
     },
@@ -507,7 +507,7 @@ const grayScaleResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "grayscale",
-  hint: "Convert Color Images into Grayscale images\n*Upload image < 4mb",
+  hint: "Convert Color Images into Grayscale images\n*Upload images of < 1mb",
   button_label: "Render",
   inputs: [
     {
@@ -527,7 +527,7 @@ const joinResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "join",
-  hint: "*Upload two images of <1mb size\n*Join it vertically or horizontally",
+  hint: "*Upload two images of < 2mb size\n*Join it vertically or horizontally",
   button_label: "Render",
   inputs: [
     {
