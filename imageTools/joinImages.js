@@ -2,9 +2,9 @@ const sharp = require("sharp");
 const fetch = require('node-fetch');
 
 const joinImage = async (req, name) => {
+  
   const imageUrl1 = req.body.params?.form?.values?.join?.files[0]?.url;
   const imageUrl2 = req.body.params?.form?.values?.join?.files[1]?.url;
-
   try {
     const response1  = await fetch(imageUrl1) 
     const response2 = await fetch(imageUrl2)
