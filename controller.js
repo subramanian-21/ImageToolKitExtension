@@ -79,6 +79,11 @@ const controller = async (req, res) => {
           output: errorResponse("Join Images", "join"),
         });
       }
+      if(images.length === 1){
+        return res.status(200).json({
+          output: errorResponse("Join Images", "join"),
+        });
+      }
       const timestamp = new Date().getTime();
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const format = 'jpeg'
