@@ -24,9 +24,9 @@ const {
   memeCreatorResponse,
 } = require("./responses");
 const imageResize = require("./imageTools/imageResize");
+const joinImage = require("./imageTools/joinImages");
 
 const controller = async (req, res) => {
-
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const images = req.body?.params?.form?.values?.pdfconverter?.files;
@@ -59,8 +59,41 @@ const controller = async (req, res) => {
       console.log(error);
     }
   }
-  if(req.body.params?.form?.values?.join){
-    console.log(req.body)
+  if (req.body.params?.form?.values?.join) {
+    try {
+      const images = req.body?.params?.form?.values?.join?.files;
+      const unsupportedFormats = images.filter((k) => {
+        const format = k.name.split(".").pop().toLowerCase();
+        return !(
+          format === "jpg" ||
+          format === "jpeg" ||
+          format === "png" ||
+          format === "gif" ||
+          format === "tiff" ||
+          format === "webp"
+        );
+      });
+
+      if (unsupportedFormats.length > 0) {
+        return res.status(200).json({
+          output: errorResponse("Join Images", "join"),
+        });
+      }
+      const timestamp = new Date().getTime();
+      const randomNumber = Math.floor(Math.random() * 1000) + 1;
+      const format = 'jpeg'
+      const uniqueName = `${timestamp}_${randomNumber}.${format}`;
+
+      const join = joinImage(req, uniqueName);
+      const url = `${serverUrl}/${uniqueName}`;
+      const resp = ImageResponse("Join Images", url, "Join Images", "join");
+
+      res.status(200).json({
+        output: resp,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   if (req.body.params?.form?.values?.converter) {
@@ -332,11 +365,12 @@ const controller = async (req, res) => {
         });
         break;
       }
-      case 'join':{
-        const response = joinResponse
+      case "join": {
+        const response = joinResponse;
         res.status(200).json({
           output: response,
         });
+        break;
       }
 
       case "memeCreator": {
@@ -396,6 +430,13 @@ const controller = async (req, res) => {
       }
       case "resize": {
         const response = resizeResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "join": {
+        const response = joinResponse;
         res.status(200).json({
           output: response,
         });

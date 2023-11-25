@@ -519,7 +519,7 @@ const grayScaleResponse = {
 const joinResponse = {
   type: "form",
   title: "ImageToolKit",
-  name: "pdfconverter",
+  name: "join",
   hint: "*Upload two images\n*Join it vertically or horizontally",
   button_label: "Render",
   inputs: [
@@ -549,6 +549,12 @@ const joinResponse = {
           label: "Vertical Join",
         },
       ],
+    },
+    {
+      name: "autocompress",
+      label: "Auto Compress",
+      value: false,
+      type: "toggle",
     },
 
   ],
