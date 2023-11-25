@@ -3,7 +3,7 @@ const compresser = async (req, uniqueName, format) => {
   try {
     const imageUrl = req.body.params.form?.values?.compresser.files.url;
     const size = req.body.params.form?.values?.size.value;
-
+    let quality;
     const response = await fetch(imageUrl);
     if (!response.ok) {
       throw new Error(`Failed to fetch image. Status: ${response.status}`);
@@ -27,13 +27,13 @@ const compresser = async (req, uniqueName, format) => {
 
     const resizedImage = sharp(buffer);
     if (format === "jpg" || format === "jpeg") {
-      resizedImage.jpeg({ quality: size });
+      resizedImage.jpeg({ quality: quality });
     } else if (format === "png") {
-      resizedImage.png({ quality: 9-Math.floor(size/10) });
+      resizedImage.png({ quality: 9-Math.floor(quality/10) });
     } else if (format === "webp") {
-      resizedImage.webp({ quality: size });
+      resizedImage.webp({ quality: quality });
     } else if (format === "gif") {
-      resizedImage.gif({ quality: size });
+      resizedImage.gif({ quality: quality });
     } else {
       console.log("format error");
     }
