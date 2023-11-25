@@ -45,7 +45,7 @@ const controller = async (req, res) => {
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const format = "pdf";
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
-      const url = `${serverUrl}/${uniqueName}`;
+      const url = `${serverUrl}/download/${uniqueName}`;
       const pdf = pdfConverter(req, uniqueName);
       const resp = pdfResultResponse(
         "Images To PDF converter",
@@ -91,7 +91,7 @@ const controller = async (req, res) => {
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
 
       const join = joinImage(req, uniqueName);
-      const url = `${serverUrl}/${uniqueName}`;
+      const url = `${serverUrl}/download/${uniqueName}`;
       const resp = ImageResponse("Join Images", url, "Join Images", "join");
 
       res.status(200).json({
@@ -120,7 +120,7 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         const convert = converter(req, uniqueName);
-        const url = `${serverUrl}/${uniqueName}`;
+        const url = `${serverUrl}/download/${uniqueName}`;
         const resp = ImageResponse(
           "Image Format Converter",
           url,
@@ -156,7 +156,7 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         const resize = imageResize(req, uniqueName);
-        const url = `${serverUrl}/${uniqueName}`;
+        const url = `${serverUrl}/download/${uniqueName}`;
         const resp = ImageResponse(
           "Resize Image",
           url,
@@ -194,7 +194,7 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         const compress = compresser(req, uniqueName, format);
-        const url = `${serverUrl}/${uniqueName}`;
+        const url = `${serverUrl}/download/${uniqueName}`;
         const resp = ImageResponse(
           "Image Compresser",
           url,
@@ -229,7 +229,7 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         const rotate = rotateImage(req, uniqueName);
-        const url = `${serverUrl}/${uniqueName}`;
+        const url = `${serverUrl}/download/${uniqueName}`;
         const resp = ImageResponse(
           "Rotate Image",
           url,
@@ -297,7 +297,7 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         const grayscaleConverter = grayscale(req, uniqueName, format);
-        const url = `${serverUrl}/${uniqueName}`;
+        const url = `${serverUrl}/download/${uniqueName}`;
         const resp = ImageResponse(
           "Grayscale Converter",
           url,
