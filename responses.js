@@ -497,7 +497,7 @@ const pdfResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "pdfconverter",
-  hint: "*Please upload a image (.jpg, .jpeg, .png Only)\n*Upload images of < 1mb\n*Compress it before converting into pdf",
+  hint: "*Please upload a image (.jpg, .jpeg, .png Only)\n*Upload images of < 500kb\n*Compress it before converting into pdf",
   button_label: "Render",
   inputs: [
     {
