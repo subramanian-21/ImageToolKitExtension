@@ -7,16 +7,30 @@ router.post("/api", controller);
 router.get("/download/:fileName", (req, res) => {
   const fileName = req.params.fileName;
   const filePath = path.join(__dirname, "public", fileName);
-
-  if (fs.existsSync(filePath)) {
-    res.download(filePath, fileName, (err) => {
-      if (err) {
-        res.status(500).send("Error downloading file");
+  fs.stat(filePath)
+    .then((stats) => {
+      if (stats.isFile()) {
+        res.download(filePath, fileName, (err) => {
+          if (err) {
+            res.status(500).send("Error downloading file");
+          }
+        });
+      } else {
+        // File is not ready
       }
+    })
+    .catch((err) => {
+      // Error occurred during file check
     });
-  } else {
-    res.status(404).send("File not found");
-  }
+  //   if (fs.existsSync(filePath)) {
+  //     res.download(filePath, fileName, (err) => {
+  //       if (err) {
+  //         res.status(500).send("Error downloading file");
+  //       }
+  //     });
+  //   } else {
+  //     res.status(404).send("File not found");
+  //   }
 });
 
 module.exports = router;
