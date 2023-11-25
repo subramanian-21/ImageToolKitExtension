@@ -467,12 +467,25 @@ const compresserResponse = {
     },
     {
       name: "size",
-      label: "Quality %",
-      placeholder: "0 - 100%",
-      min: "0",
-      max: "100",
+      label: "Select Quality of Image",
+      placeholder: "Choose Quality",
+      multiple: false,
       mandatory: true,
-      type: "number",
+      type: "select",
+      options: [
+        {
+          value: "high",
+          label: "High",
+        },
+        {
+          value: "medium",
+          label: "Medium",
+        },
+        {
+          value: "low",
+          label: "Low",
+        },
+      ],
     },
   ],
   action: {
