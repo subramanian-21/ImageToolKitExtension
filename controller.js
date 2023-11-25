@@ -16,6 +16,7 @@ const {
   ImageResponse,
   rotateResponse,
   resizeResponse,
+  twoInputs,
   joinResponse,
   pdfResultResponse,
   funResponse,
@@ -81,7 +82,7 @@ const controller = async (req, res) => {
       }
       if(images.length === 1){
         return res.status(200).json({
-          output: errorResponse("Join Images", "join"),
+          output: twoInputs("Join Images", "join"),
         });
       }
       const timestamp = new Date().getTime();

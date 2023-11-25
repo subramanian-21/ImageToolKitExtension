@@ -668,30 +668,15 @@ const pdfResultResponse = (name, url, text, uName) => {
           },
         ],
       },
-      // {
-      //   type: "text",
-      //   title: "Note :",
-      //   data: "The Larger image size => more waiting time\n*It is recomended to compress images before converting into PDF*\n\n*Convert Next :*",
-      //   buttons: [
-      //     {
-      //       label: text,
-      //       hint: "",
-      //       action: {
-      //         type: "invoke.function",
-      //         data: {
-      //           name: "imagetoolkitform",
-      //         },
-      //       },
-      //       key: uName,
-      //     },
-      //   ],
-      // },
     ],
   };
 };
 const errorResponse = (text, uName) => {
   return {
     text: "# ImageToolKit",
+    card: {
+      theme: "modern-inline",
+    },
     slides: [
       {
         type: "text",
@@ -725,6 +710,34 @@ const unsupportedResponse = {
   ],
   text: "# ImageToolKit",
 };
+const twoInputs = (text, uName) => {
+  return {
+    text: "# ImageToolKit",
+    card: {
+      theme: "modern-inline",
+    },
+    slides: [
+      {
+        type: "text",
+        title: "Error",
+        data: "Input Two images to join\n\n*Convert Next :*",
+        buttons: [
+          {
+            label: text,
+            hint: "",
+            action: {
+              type: "invoke.function",
+              data: {
+                name: "imagetoolkitform",
+              },
+            },
+            key: uName,
+          },
+        ],
+      },
+    ],
+  };
+};
 
 module.exports = {
   helpResponse,
@@ -736,6 +749,7 @@ module.exports = {
   joinResponse,
   errorResponse,
   pdfResponse,
+  twoInputs,
   resizeResponse,
   pdfResultResponse,
   rotateResponse,
