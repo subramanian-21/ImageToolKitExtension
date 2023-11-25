@@ -656,7 +656,7 @@ const pdfResultResponse = (name, url,download, text, uName) => {
             },
           },
           {
-            label: "Open PDF",
+            label: "Download PDF",
             type: "+",
             action: {
               type: "open.url",
