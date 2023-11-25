@@ -19,11 +19,10 @@ router.get("/download/:fileName", (req, res) => {
           }
         });
       } else {
-        res.write("hello")
+        console.log("Error...")
       }
     }
   });
-    
 });
 
 module.exports = router;

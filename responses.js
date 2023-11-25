@@ -585,7 +585,7 @@ const joinResponse = {
   },
 };
 
-const ImageResponse = (name, url, text, uName) => {
+const ImageResponse = (name, url,download, text, uName) => {
   return {
     text: `# ${name}`,
     card: {
@@ -602,6 +602,14 @@ const ImageResponse = (name, url, text, uName) => {
             action: {
               type: "open.url",
               data: { web: url },
+            },
+          },
+          {
+            label: "Download image",
+            type: "+",
+            action: {
+              type: "open.url",
+              data: { web: download },
             },
           },
         ],
@@ -628,7 +636,7 @@ const ImageResponse = (name, url, text, uName) => {
     ],
   };
 };
-const pdfResultResponse = (name, url, text, uName) => {
+const pdfResultResponse = (name, url,download, text, uName) => {
   return {
     text: `# ${name}`,
     card: {
@@ -645,6 +653,14 @@ const pdfResultResponse = (name, url, text, uName) => {
             action: {
               type: "open.url",
               data: { web: url },
+            },
+          },
+          {
+            label: "Open PDF",
+            type: "+",
+            action: {
+              type: "open.url",
+              data: { web: download },
             },
           },
         ],

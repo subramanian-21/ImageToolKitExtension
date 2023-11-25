@@ -45,11 +45,13 @@ const controller = async (req, res) => {
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const format = "pdf";
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
-      const url = `${serverUrl}/download/${uniqueName}`;
+      const url = `${serverUrl}/${uniqueName}`;
+      const download = `${serverUrl}/download/${uniqueName}`;
       const pdf = pdfConverter(req, uniqueName);
       const resp = pdfResultResponse(
         "Images To PDF converter",
         url,
+        download,
         "Images to PDF",
         "pdfconverter"
       );
@@ -91,8 +93,9 @@ const controller = async (req, res) => {
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
 
       const join = joinImage(req, uniqueName);
-      const url = `${serverUrl}/download/${uniqueName}`;
-      const resp = ImageResponse("Join Images", url, "Join Images", "join");
+      const url = `${serverUrl}/${uniqueName}`;
+      const download = `${serverUrl}/download/${uniqueName}`;
+      const resp = ImageResponse("Join Images", url,download, "Join Images", "join");
 
       res.status(200).json({
         output: resp,
@@ -120,10 +123,12 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         const convert = converter(req, uniqueName);
-        const url = `${serverUrl}/download/${uniqueName}`;
+        const url = `${serverUrl}/${uniqueName}`;
+        const download = `${serverUrl}/download/${uniqueName}`;
         const resp = ImageResponse(
           "Image Format Converter",
           url,
+          download,
           "Image Converter",
           "converter"
         );
@@ -156,10 +161,12 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         const resize = imageResize(req, uniqueName);
-        const url = `${serverUrl}/download/${uniqueName}`;
+        const url = `${serverUrl}/${uniqueName}`;
+        const download = `${serverUrl}/download/${uniqueName}`;
         const resp = ImageResponse(
           "Resize Image",
           url,
+          download,
           "Resize Image",
           "resize"
         );
@@ -194,10 +201,12 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         const compress = compresser(req, uniqueName, format);
-        const url = `${serverUrl}/download/${uniqueName}`;
+        const url = `${serverUrl}/${uniqueName}`;
+        const download = `${serverUrl}/download/${uniqueName}`;
         const resp = ImageResponse(
           "Image Compresser",
           url,
+          download,
           "Image Compresser",
           "compresser"
         );
@@ -229,10 +238,12 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         const rotate = rotateImage(req, uniqueName);
-        const url = `${serverUrl}/download/${uniqueName}`;
+        const url = `${serverUrl}/${uniqueName}`;
+        const download = `${serverUrl}/download/${uniqueName}`;
         const resp = ImageResponse(
           "Rotate Image",
           url,
+          download,
           "Rotate Image",
           "rotate"
         );
@@ -297,10 +308,12 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         const grayscaleConverter = grayscale(req, uniqueName, format);
-        const url = `${serverUrl}/download/${uniqueName}`;
+        const url = `${serverUrl}/${uniqueName}`;
+        const download = `${serverUrl}/download/${uniqueName}`;
         const resp = ImageResponse(
           "Grayscale Converter",
           url,
+          download,
           "Grayscale",
           "grayscale"
         );
