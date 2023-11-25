@@ -93,7 +93,7 @@ const resizeResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "resize",
-  hint: "resize any (JPG, JPEG, PNG, WEBP, GIF...) of the image formats",
+  hint: "resize any (JPG, JPEG, PNG, WEBP, GIF...) of the image formats\n*Upload image of <4mb",
   button_label: "Render",
   inputs: [
     {
@@ -177,7 +177,7 @@ const converterResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "converter",
-  hint: "convert Image from JPG, JPEG, PNG, WEBP, GIF... to any of the formats ",
+  hint: "convert Image from JPG, JPEG, PNG, WEBP, GIF... to any of the formats\n*upload image < 4mb",
   button_label: "Render",
   inputs: [
     {
@@ -312,7 +312,7 @@ const rotateResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "rotate",
-  hint: "Orient images to 90, 180, 270 degrees",
+  hint: "Orient images to 90, 180, 270 degrees\nUpload image < 4mb",
   button_label: "Render",
   inputs: [
     {
@@ -484,7 +484,7 @@ const pdfResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "pdfconverter",
-  hint: "*Please upload a image (.jpg, .jpeg, .png Only)\n*Upload images of <500kb\n*Compress it before converting into pdf",
+  hint: "*Please upload a image (.jpg, .jpeg, .png Only)\n*Upload images of < 500kb\n*Compress it before converting into pdf",
   button_label: "Render",
   inputs: [
     {
@@ -507,7 +507,7 @@ const grayScaleResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "grayscale",
-  hint: "Convert Color Images into Grayscale images",
+  hint: "Convert Color Images into Grayscale images\n*Upload image < 4mb",
   button_label: "Render",
   inputs: [
     {
@@ -527,7 +527,7 @@ const joinResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "join",
-  hint: "*Upload two images\n*Join it vertically or horizontally",
+  hint: "*Upload two images of <1mb size\n*Join it vertically or horizontally",
   button_label: "Render",
   inputs: [
     {
@@ -612,19 +612,6 @@ const ImageResponse = (name, url, text, uName) => {
           },
         ],
       },
-
-      // {
-      //   type: "text",
-      //   title: "Note :",
-      //   data: "The Larger the image size => more the waiting time\n\n*Convert Next :*",
-
-      // },
-
-      // {
-      //   type: "text",
-      //   title: "Hint :",
-      //   data: "Click on 'Go to image'\nRight click on image and select 'Save image as...'",
-      // },
     ],
   };
 };
