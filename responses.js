@@ -312,12 +312,12 @@ const rotateResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "rotate",
-  hint: "Rotate images from 90, 180, 270 degrees",
+  hint: "Orient images to 90, 180, 270 degrees",
   button_label: "Render",
   inputs: [
     {
       name: "rotate",
-      label: "Select image to be rotated",
+      label: "Select image to be Oriented",
       placeholder:
         "Please upload a image (.jpg, .jpeg, .png, .webp, .gif ....)",
       mandatory: true,
@@ -343,6 +343,13 @@ const rotateResponse = {
           value: "270",
           label: "270° (left)",
         },
+        {
+          value: "flip",
+          label: "Flip (vertical mirror)",
+        },{
+          value: "flop",
+          label: "Flop (horizontal mirror)",
+        }
       ],
     },
   ],
