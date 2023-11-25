@@ -9,7 +9,6 @@ router.get("/download/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "public", fileName);
   fs.stat(filePath, (err, stats) => {
     if (err) {
-      // Handle error (e.g., file doesn't exist or inaccessible)
       console.error(err);
     } else {
       if (stats.isFile()) {
@@ -18,10 +17,8 @@ router.get("/download/:fileName", (req, res) => {
             res.status(500).send("Error downloading file");
           }
         });
-        console.log("File exists and is ready for download");
       } else {
-        // File is not ready or not a regular file
-        console.log("File is not ready or not a regular file");
+        res.sendFile(__dirname + "/staticAssets/index.html")
       }
     }
   });
