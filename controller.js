@@ -29,7 +29,6 @@ const imageResize = require("./imageTools/imageResize");
 const joinImage = require("./imageTools/joinImages");
 
 const controller = async (req, res) => {
-
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const images = req.body?.params?.form?.values?.pdfconverter?.files;
@@ -169,8 +168,9 @@ const controller = async (req, res) => {
         format == "gif"
       ) {
         if (
-          !req.body.params.form?.values?.width ||
-          !req.body.params.form?.values?.height
+          req.body.params.form?.values?.resizes.value === "0" &&
+          (!req.body.params.form?.values?.width ||
+            !req.body.params.form?.values?.height)
         ) {
           return res.status(200).json({
             output: customWH("Resize Image", "resize"),
