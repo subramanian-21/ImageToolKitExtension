@@ -19,7 +19,6 @@ router.get("/download/:fileName", (req, res) => {
   });
   fileStream.on('error', (err) => {
     console.error(err);
-    res.status(500).end('Internal Server Error');
   });
   // fs.stat(filePath, (err, stats) => {
   //   if (err) {
