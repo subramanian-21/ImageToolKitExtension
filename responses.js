@@ -64,12 +64,10 @@ const optionsResponse = {
           value: "compresser",
           label: "Image Compresser",
         },
-
         {
           value: "pdfconverter",
           label: "Images to PDF",
         },
-
         {
           value: "join",
           label: "Join Images",
