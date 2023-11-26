@@ -10,6 +10,7 @@ const {
   helpResponse,
   optionsResponse,
   converterResponse,
+  customWH,
   compresserResponse,
   grayScaleResponse,
   pdfResponse,
@@ -82,20 +83,26 @@ const controller = async (req, res) => {
           output: errorResponse("Join Images", "join"),
         });
       }
-      if(images.length === 1){
+      if (images.length === 1) {
         return res.status(200).json({
           output: twoInputs("Join Images", "join"),
         });
       }
       const timestamp = new Date().getTime();
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
-      const format = 'jpeg'
+      const format = "jpeg";
       const uniqueName = `${timestamp}_${randomNumber}.${format}`;
 
       const join = joinImage(req, uniqueName);
       const url = `${serverUrl}/${uniqueName}`;
       const download = `${serverUrl}/download/${uniqueName}`;
-      const resp = ImageResponse("Join Images", url,download, "Join Images", "join");
+      const resp = ImageResponse(
+        "Join Images",
+        url,
+        download,
+        "Join Images",
+        "join"
+      );
 
       res.status(200).json({
         output: resp,
@@ -160,6 +167,15 @@ const controller = async (req, res) => {
         format == "webp" ||
         format == "gif"
       ) {
+        if (
+          !req.body.params.form?.values?.width ||
+          !req.body.params.form?.values?.height
+        ) {
+          return res.status(200).json({
+            output: customWH("Resize Image", "resize"),
+          });
+
+        }
         const resize = imageResize(req, uniqueName);
         const url = `${serverUrl}/${uniqueName}`;
         const download = `${serverUrl}/download/${uniqueName}`;

@@ -754,6 +754,34 @@ const twoInputs = (text, uName) => {
     ],
   };
 };
+const customWH = (text, uName) => {
+  return {
+    text: "# ImageToolKit",
+    card: {
+      theme: "modern-inline",
+    },
+    slides: [
+      {
+        type: "text",
+        title: "Error",
+        data: "Fill both custom Height and width\n\n*Convert Next :*",
+        buttons: [
+          {
+            label: text,
+            hint: "",
+            action: {
+              type: "invoke.function",
+              data: {
+                name: "imagetoolkitform",
+              },
+            },
+            key: uName,
+          },
+        ],
+      },
+    ],
+  };
+};
 
 module.exports = {
   helpResponse,
@@ -771,6 +799,7 @@ module.exports = {
   rotateResponse,
   funResponse,
   animeResponse,
+  customWH,
   memeResponse,
   memeCreatorResponse,
   unsupportedResponse,
