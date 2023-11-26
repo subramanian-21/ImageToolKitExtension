@@ -29,6 +29,7 @@ const imageResize = require("./imageTools/imageResize");
 const joinImage = require("./imageTools/joinImages");
 
 const controller = async (req, res) => {
+
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const images = req.body?.params?.form?.values?.pdfconverter?.files;
@@ -174,7 +175,6 @@ const controller = async (req, res) => {
           return res.status(200).json({
             output: customWH("Resize Image", "resize"),
           });
-
         }
         const resize = imageResize(req, uniqueName);
         const url = `${serverUrl}/${uniqueName}`;
@@ -418,6 +418,153 @@ const controller = async (req, res) => {
 
       case "resize": {
         const response = resizeResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+    }
+  }
+  if (
+    req.body?.handler?.type === "suggestion_handler" &&
+    req.body?.name === "imagetoolkit" &&
+    !req.body.params?.selections[0]?.title
+  ) {
+    return res.status(200).json({
+      output: [
+        {
+          title: "ImageOperations",
+
+          description: "List of various image operations",
+          imageurl:
+            "https://miro.medium.com/v2/resize:fit:1400/1*de3ZD-Vk-v6p0mouXZfn_Q.jpeg",
+        },
+        {
+          title: "Fun",
+
+          description: "list of fun operations",
+          imageurl:
+            "https://t3.ftcdn.net/jpg/01/98/84/54/360_F_198845405_2BM10dX8fDBPQYn9h7azYx8TKFUZOyJG.jpg",
+        },
+      ],
+    });
+  }
+  if (
+    req.body?.handler?.type === "suggestion_handler" &&
+    req.body.params.selections
+  ) {
+    switch (req.body.params.selections[0].title) {
+      case "ImageOperations": {
+        return res.status(200).json({
+          output: [
+            {
+              title: "ImageCompresser",
+              description: "Compress quality of image",
+            },
+            {
+              title: "ImageConverter",
+              description: "Convert images into various other formats",
+            },
+            {
+              title: "PdfCreator",
+              description: "Images to PDF",
+            },
+            {
+              title: "JoinImages",
+              description: "Append two images",
+            },
+            {
+              title: "ImageResizer",
+              description: "Customize your image size",
+            },
+            {
+              title: "OrientImage",
+              description: "Orient images accordingly",
+            },
+            {
+              title: "GrayScale",
+              description: "Convert Color images to grayscale",
+            },
+          ],
+        });
+      }
+      case "Fun": {
+        return res.status(200).json({
+          output: [
+            {
+              title: "AnimeEmojiGenerator",
+              description: "List of various image operations",
+            },
+            {
+              title: "MemeCreator",
+              description: "list of fun operations",
+            },
+          ],
+        });
+      }
+    }
+  }
+
+  if (req.body?.handler?.type === "execution_handler") {
+    switch (req.body.params.selections[1].title) {
+      case "ImageCompresser": {
+        const response = compresserResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "ImageConverter": {
+        const response = converterResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "PdfCreator": {
+        const response = pdfResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "JoinImages": {
+        const response = joinResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "ImageResizer": {
+        const response = resizeResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "OrientImage": {
+        const response = rotateResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "GrayScale": {
+        const response = grayScaleResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "AnimeEmojiGenerator": {
+        const response = animeResponse;
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+      case "MemeCreator": {
+        const response = memeCreatorResponse;
         res.status(200).json({
           output: response,
         });

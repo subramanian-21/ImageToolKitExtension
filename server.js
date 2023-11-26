@@ -19,3 +19,35 @@ app.use((req, res) => {
 app.listen(5001, () => {
   console.log("Server@5001");
 });
+
+
+/*
+
+if (req.body.params.selections) {
+    console.log(req.body.params.selections)
+    switch (req.body.params.selections[0].title) {
+      case "ImageOperations": {
+        const response = optionsResponse;
+        return res.status(200).json({
+          output: response,
+        });
+        break
+      }
+        
+      case "Fun": {
+        const response = helpResponse;
+        return res.status(200).json({
+          output: response,
+        });
+        break
+      }
+      case "Help": {
+        const response = funResponse;
+        return res.status(200).json({
+          output: response,
+        });
+        break
+      }
+    }
+  }
+*/
