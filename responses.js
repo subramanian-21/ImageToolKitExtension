@@ -1,14 +1,51 @@
 const helpResponse = {
-  text: "# Help",
+  text: "# Tutorial",
   slides: [
     {
       type: "text",
-      title: "# imageToolKit",
-      data: 'ImageToolkit is a Cliq extension that provides various image operations, including image format conversion, dynamic image compression, and grayscale conversion.\n\n## Getting Started\n\n1. *Installation:*\n   - Install the extension in your Cliq Marketplace.\n\n2. *Accessing the Extension:*\n   - Search for ImageToolkitBot\n\n## Usage\n\n1. *Choose an Operation:*\n   - Click on "ImageOperations" in the extension popup.\n   - Choose the desired image operation, such as image converter, compressor, etc.\n\n2. *Upload and Convert:*\n   - Upload the image you want to process.\n   - Provide any necessary details for the conversion.\n   - Submit the form.\n\n3. *View Rendered Image:*\n   - The response URL is provided. Open it to view the rendered image in a new tab.\n\n4. *Save Rendered Image:*\n   - In the new tab, right-click on the rendered image.\n   - Select "Save Image As..." to save the processed image to your device.',
+      title: "# ImageToolKit",
+      data: "ImageToolKit helps users to perform image operations such as such as conversion, compression, resizing and much more with additional components like emoji and meme generators.",
+    },
+    {
+      type: "text",
+      title: "# Getting Started",
+      data: "1. *Installation*:\n       - Install the extension from the Cliq Extension Marketplace\n\n2. *Accessing the Extension*:\n       - Search for ImageToolKit Bot in \nthe Searchbar \n       - Select it and a bot will appear in your conversations",
+    },
+    {
+      type: "text",
+      title: "# Usage",
+      data: "*Modules*:\n     A)Image Operations\n     B)Fun\n\n*1.Choose a Module*\n       - Click on the required module button displayed on the bottom of the bot.",
+    },
+    {
+      type: "list",
+      title: "2.Choose an Operation",
+      data: [
+        "Select an operation from the dropdown list.",
+        "Operations include Image Compressor, Image Converter, Meme Creator etc.",
+        "Click on 'Next'.",
+      ],
+    },
+    {
+      type: "list",
+      title: "3.Input Fields",
+      data: [
+        "Upload image from files as required.",
+        "Provide necessary specifications as requested.",
+        "Click on 'Render' and submit the form.",
+      ],
+    },
+    {
+      type: "list",
+      title: "4.View Result",
+      data: [
+        "After submission, a new message appears with the response.",
+        "Click on 'Download' to download the rendered object.",
+        "Click on 'Go to' button for accessing the URL which contains the response.",
+        "Based on the image size uploaded, rendering may take some time.",
+      ],
     },
   ],
 };
-
 const optionsResponse = {
   type: "form",
   title: "ImageToolkit",
@@ -346,10 +383,11 @@ const rotateResponse = {
         {
           value: "flip",
           label: "Flip (vertical mirror)",
-        },{
+        },
+        {
           value: "flop",
           label: "Flop (horizontal mirror)",
-        }
+        },
       ],
     },
   ],
@@ -546,7 +584,8 @@ const joinResponse = {
     {
       name: "join",
       label: "Select two images",
-      placeholder: "Please upload a image(.jpg, .jpeg, .png, .gif, .tiff, .webp)",
+      placeholder:
+        "Please upload a image(.jpg, .jpeg, .png, .gif, .tiff, .webp)",
       multiple: true,
       max_selections: 2,
       mandatory: true,
@@ -576,7 +615,6 @@ const joinResponse = {
       value: false,
       type: "toggle",
     },
-
   ],
 
   action: {
@@ -585,7 +623,7 @@ const joinResponse = {
   },
 };
 
-const ImageResponse = (name, url,download, text, uName) => {
+const ImageResponse = (name, url, download, text, uName) => {
   return {
     text: `# ${name}`,
     card: {
@@ -636,7 +674,7 @@ const ImageResponse = (name, url,download, text, uName) => {
     ],
   };
 };
-const pdfResultResponse = (name, url,download, text, uName) => {
+const pdfResultResponse = (name, url, download, text, uName) => {
   return {
     text: `# ${name}`,
     card: {
