@@ -349,7 +349,7 @@ const rotateResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "rotate",
-  hint: "Orient images to 90, 180, 270 degrees\n*Upload images of < 1mb",
+  hint: "Orient images to 90, 180, 270 degrees\n*Upload images of < 10mb",
   button_label: "Render",
   inputs: [
     {
