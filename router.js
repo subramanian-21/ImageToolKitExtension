@@ -10,31 +10,13 @@ router.get("/download/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "public", fileName);
   const fileStream = fs.createReadStream(filePath);
   fileStream.on('open', () => {
-    res.download(filePath, fileName, (err) => {
-              if (err) {
-                console.log(err)
-              }
-            });
+    res.set('Content-Disposition', `attachment; filename="${fileName}"`);
     fileStream.pipe(res);
   });
   fileStream.on('error', (err) => {
     console.error(err);
+    
   });
-  // fs.stat(filePath, (err, stats) => {
-  //   if (err) {
-  //     console.error(err);
-  //   } else {
-  //     if (stats.isFile()) {
-  //       res.download(filePath, fileName, (err) => {
-  //         if (err) {
-  //           console.log(err)
-  //         }
-  //       });
-  //     } else {
-  //       console.log("Error...")
-  //     }
-  //   }
-  // });
 });
 
 module.exports = router;
