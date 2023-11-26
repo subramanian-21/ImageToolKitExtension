@@ -10,7 +10,11 @@ router.get("/download/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "public", fileName);
   const fileStream = fs.createReadStream(filePath);
   fileStream.on('open', () => {
-    res.set('Content-Disposition', `attachment; filename="${fileName}"`);
+    res.download(filePath, fileName, (err) => {
+              if (err) {
+                console.log(err)
+              }
+            });
     fileStream.pipe(res);
   });
   fileStream.on('error', (err) => {
