@@ -1,3 +1,3 @@
-const url = "https://sleepy-gold-veil.cyclic.app"
+const url = "https://imagetoolkitextension.onrender.com"
 
 module.exports = url
