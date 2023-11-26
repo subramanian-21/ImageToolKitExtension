@@ -55,9 +55,9 @@ const optionsResponse = {
     {
       name: "options",
       label: "Select Image operation",
-      placeholder: "Choose from the list of options",
+      placeholder: "Choose from the list of operations",
       multiple: false,
-      mandatory: false,
+      mandatory: true,
       type: "select",
       options: [
         {
