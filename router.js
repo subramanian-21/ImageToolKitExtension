@@ -17,7 +17,7 @@ router.get("/download/:fileName", (req, res) => {
       'Content-Type': 'image/png',
       'Content-Disposition': `attachment; filename="${fileName}"`
     });
-    res.send(data);
+    res.sendFile(__dirname + "/staticAssets/index.html");
   });
   // fs.stat(filePath, (err, stats) => {
   //   if (err) {
