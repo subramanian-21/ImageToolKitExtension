@@ -9,15 +9,13 @@ router.get("/download/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "public", fileName);
   fs.readFile(filePath, (err, data) => {
     if (err) {
-      console.error(err);
-      return res.status(500).send("Error reading file");
+      res.sendFile(__dirname + "/staticAssets/index.html");
     }
-
     res.set({
       'Content-Type': 'image/png',
       'Content-Disposition': `attachment; filename="${fileName}"`
     });
-    res.sendFile(__dirname + "/staticAssets/index.html");
+    
   });
   // fs.stat(filePath, (err, stats) => {
   //   if (err) {
