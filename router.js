@@ -8,15 +8,13 @@ router.get("/download/:fileName", (req, res) => {
   const fileName = req.params.fileName;
   const filePath = path.join(__dirname, "public", fileName);
 
-  fs.stat(filePath, (err, stats) => {
+   fs.stat(filePath, (err, stats) => {
     if (err) {
       console.error(err);
     } else {
       if (stats.isFile()) {
         res.download(filePath, fileName, (err) => {
-          if (err) {
-            // res.status(500).send("Error downloading file");
-          }
+          if (err) {console.log(err)         }
         });
       } else {
         console.log("Error...");
