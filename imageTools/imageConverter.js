@@ -8,7 +8,7 @@ const converter = async (req, name) => {
     const buffer = await response.arrayBuffer();
 
     const resizedImage = sharp(buffer);
-    await resizedImage.toFile(`./public/${name}`).withMetadata();
+    await resizedImage.withMetadata().toFile(`./public/${name}`);
   } catch (error) {
     console.log(error);
   }
