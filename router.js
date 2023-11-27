@@ -9,9 +9,7 @@ router.get("/download/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "public", fileName);
   const format = fileName.split(".")[1]
   fs.readFile(filePath, (err, data) => {
-    if (err) {
-      res.sendFile(__dirname + "/staticAssets/index.html");
-    }
+   
     res.download(filePath, fileName, (err) => {
                 if (err) {
                   res.status(500).send("Error downloading file");
