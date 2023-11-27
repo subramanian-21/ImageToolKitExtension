@@ -7,12 +7,13 @@ router.post("/api", controller);
 router.get("/download/:fileName", (req, res) => {
   const fileName = req.params.fileName;
   const filePath = path.join(__dirname, "public", fileName);
+  const format = fileName.split(".")[1]
   fs.readFile(filePath, (err, data) => {
     if (err) {
       res.sendFile(__dirname + "/staticAssets/index.html");
     }
     res.set({
-      'Content-Type': 'image/png',
+      'Content-Type': 'image/'+format,
       'Content-Disposition': `attachment; filename="${fileName}"`
     });
     
