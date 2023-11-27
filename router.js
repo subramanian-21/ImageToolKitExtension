@@ -13,11 +13,13 @@ router.get("/download/:fileName", (req, res) => {
       console.error(err);
     } else {
       if (stats.isFile()) {
-        res.download(filePath, fileName, (err) => {
-          if (err) {
-            res.status(500).send("Error downloading file");
-          }
-        });
+        setTimeout(() => {
+          res.download(filePath, fileName, (err) => {
+            if (err) {
+              res.status(500).send("Error downloading file");
+            }
+          });
+        }, 100);
       } else {
         console.log("Error...")
       }
