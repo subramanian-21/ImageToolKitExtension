@@ -12,10 +12,11 @@ router.get("/download/:fileName", (req, res) => {
     if (err) {
       res.sendFile(__dirname + "/staticAssets/index.html");
     }
-    res.set({
-      'Content-Type': 'image/'+format,
-      'Content-Disposition': `attachment; filename="${fileName}"`
-    });
+    res.download(filePath, fileName, (err) => {
+                if (err) {
+                  res.status(500).send("Error downloading file");
+                }
+              });
     
   });
   // fs.stat(filePath, (err, stats) => {
