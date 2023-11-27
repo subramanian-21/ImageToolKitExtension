@@ -47,7 +47,7 @@ const helpResponse = {
     {
       type: "text",
       title: "Note",
-      data: "*Modules*:\n     A)Image Operations\n     B)Fun\n\n*1.Choose a Module*\n       - Click on the required module button displayed on the bottom of the bot.",
+      data: "Brief delay or server error? Server's waking up after long period of inactivity,Wait a few seconds and try again for the magic!",
     },
   ],
 };
