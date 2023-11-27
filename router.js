@@ -19,7 +19,7 @@ router.get("/download/:fileName", (req, res) => {
               res.status(500).send("Error downloading file");
             }
           });
-        }, 100);
+        }, 0);
       } else {
         console.log("Error...")
       }
