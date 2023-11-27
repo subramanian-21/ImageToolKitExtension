@@ -44,6 +44,11 @@ const helpResponse = {
         "Based on the image size uploaded, rendering may take some time.",
       ],
     },
+    {
+      type: "text",
+      title: "Note",
+      data: "*Modules*:\n     A)Image Operations\n     B)Fun\n\n*1.Choose a Module*\n       - Click on the required module button displayed on the bottom of the bot.",
+    },
   ],
 };
 const optionsResponse = {
@@ -578,7 +583,7 @@ const joinResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "join",
-  hint: "*Upload two images of < 2mb size\n*Join it vertically or horizontally",
+  hint: "*Upload two images of < 2mb size\n*Join it vertically or horizontally\n*note: Images must be of same size",
   button_label: "Render",
   inputs: [
     {
