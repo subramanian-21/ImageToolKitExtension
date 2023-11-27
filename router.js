@@ -22,10 +22,9 @@ router.get("/download/:fileName", (req, res) => {
           }
         }
       });
+    }else{
+      res.sendFile(__dirname + "/staticAssets/index.html");
     }
-      
-
-    
   } catch (error) {
     console.log(err)
   }
