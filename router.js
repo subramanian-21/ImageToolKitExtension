@@ -7,33 +7,24 @@ router.post("/api", controller);
 router.get("/download/:fileName", (req, res) => {
   const fileName = req.params.fileName;
   const filePath = path.join(__dirname, "public", fileName);
-  const format = fileName.split(".")[1]
-  fs.readFile(filePath, (err, data) => {
-   
-    res.download(filePath, fileName, (err) => {
-                if (err) {
-                  res.status(500).send("Error downloading file");
-                }
-              });
-    
+  const format = fileName.split(".")[1];
+
+  fs.stat(filePath, (err, stats) => {
+    if (err) {
+      console.error(err);
+    } else {
+      if (stats.isFile()) {
+          res.download(filePath, fileName, (err) => {
+            if (err) {
+              res.status(500).send("Error downloading file");
+            }
+          });
+       
+      } else {
+        console.log("Error...")
+      }
+    }
   });
-  // fs.stat(filePath, (err, stats) => {
-  //   if (err) {
-  //     console.error(err);
-  //   } else {
-  //     if (stats.isFile()) {
-  //       setTimeout(() => {
-  //         res.download(filePath, fileName, (err) => {
-  //           if (err) {
-  //             res.status(500).send("Error downloading file");
-  //           }
-  //         });
-  //       }, 0);
-  //     } else {
-  //       console.log("Error...")
-  //     }
-  //   }
-  // });
 });
 
 module.exports = router;
