@@ -8,7 +8,7 @@ router.get("/download/:fileName", (req, res) => {
   const fileName = req.params.fileName;
   const filePath = path.join(__dirname, "public", fileName);
   try {
-    setTimeout(()=>{
+    if (fs.existsSync(filePath)) {
       fs.stat(filePath, (err, stats) => {
         if (err) {
           console.error(err);
@@ -22,8 +22,9 @@ router.get("/download/:fileName", (req, res) => {
           }
         }
       });
+    }
       
-    },3000)
+
     
   } catch (error) {
     console.log(err)

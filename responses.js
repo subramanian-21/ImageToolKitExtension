@@ -219,7 +219,7 @@ const converterResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "converter",
-  hint: "convert Image from JPG, JPEG, PNG, WEBP, GIF... to any of the formats\n*upload image of < 10mb",
+  hint: "convert Image from JPG, JPEG, PNG, WEBP, GIF... to any of the formats\n*upload image of < 5mb\n*Note: jpg to gif,png,webp can render image of more size(storage)*",
   button_label: "Render",
   inputs: [
     {
