@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const controller = require("./controller");
 const path = require("path");
-
 const fs = require("fs");
 router.post("/api", controller);
 router.get("/download/:fileName", (req, res) => {
@@ -23,6 +22,8 @@ router.get("/download/:fileName", (req, res) => {
             }
           }
         });
+
+
       },2000) 
     }else{
       res.sendFile(__dirname + "/staticAssets/index.html");
