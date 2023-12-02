@@ -1,5 +1,4 @@
 const sharp = require("sharp");
-const fs = require('@cyclic.sh/s3fs')('cyclic-sleepy-gold-veil-ap-northeast-2')
 const grayScale = async (req, name) => {
   try {
     let imageUrl;
@@ -17,9 +16,7 @@ const grayScale = async (req, name) => {
     const resizedImage = sharp(buffer);
     resizedImage.grayscale();
 
-    const re = await resizedImage.withMetadata().toBuffer();
-
-    await fs.writeFileSync('public/'+name,re)
+    await resizedImage.withMetadata().toFile(`./public/${name}`);
   } catch (error) {
     console.log(error);
   }

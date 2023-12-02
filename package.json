@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/thugperfect/ImageToolKitExtension#readme",
   "dependencies": {
-    "@cyclic.sh/s3fs": "^1.2.9",
     "axios": "^1.6.1",
     "express": "^4.18.2",
     "node-fetch": "^2.7.0",
