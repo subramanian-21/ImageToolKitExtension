@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 app.use(express.json());
@@ -13,6 +14,7 @@ app.use((req, res) => {
      res.sendFile(__dirname + "/staticAssets/index.html");
   }
 });
-app.listen(3000, "0.0.0.0",() => {
+const port = process.env.PORT || 5001
+app.listen(port, "0.0.0.0",() => {
   console.log("Server@5001");
 });
