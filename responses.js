@@ -337,10 +337,7 @@ const animeResponse = {
           value: "surprised",
           label: "surprised",
         },
-        {
-          value: "yes",
-          label: "yes",
-        },
+     
       ],
     },
   ],
@@ -980,6 +977,36 @@ const actionCompresserResponse =  {
     name: "imagetoolkitform",
   },
 };
+const slashImageOperations = [
+  {
+    title: "ImageCompresser",
+    description: "Compress quality of image",
+  },
+  {
+    title: "ImageConverter",
+    description: "Convert images into various other formats",
+  },
+  {
+    title: "PdfCreator",
+    description: "Images to PDF",
+  },
+  {
+    title: "JoinImages",
+    description: "Append two images",
+  },
+  {
+    title: "ImageResizer",
+    description: "Customize your image size",
+  },
+  {
+    title: "OrientImage",
+    description: "Orient images accordingly",
+  },
+  {
+    title: "GrayScale",
+    description: "Convert Color images to grayscale",
+  },
+]
 module.exports = {
   helpResponse,
   optionsResponse,
@@ -997,6 +1024,7 @@ module.exports = {
   funResponse,
   animeResponse,
   customWH,
+  slashImageOperations,
   memeResponse,
   memeCreatorResponse,
   unsupportedResponse,

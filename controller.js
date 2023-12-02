@@ -18,6 +18,7 @@ const {
   rotateResponse,
   resizeResponse,
   twoInputs,
+  slashImageOperations,
   joinResponse,
   pdfResultResponse,
   actionConverterResponse,
@@ -32,6 +33,7 @@ const imageResize = require("./imageTools/imageResize");
 const joinImage = require("./imageTools/joinImages");
 
 const controller = async (req, res) => {
+
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const images = req.body?.params?.form?.values?.pdfconverter?.files;
@@ -505,6 +507,7 @@ const controller = async (req, res) => {
       ],
     });
   }
+
   if (
     req.body?.handler?.type === "suggestion_handler" &&
     req.body.params.selections
@@ -512,36 +515,7 @@ const controller = async (req, res) => {
     switch (req.body.params?.selections[0]?.title) {
       case "ImageOperations": {
         return res.status(200).json({
-          output: [
-            {
-              title: "ImageCompresser",
-              description: "Compress quality of image",
-            },
-            {
-              title: "ImageConverter",
-              description: "Convert images into various other formats",
-            },
-            {
-              title: "PdfCreator",
-              description: "Images to PDF",
-            },
-            {
-              title: "JoinImages",
-              description: "Append two images",
-            },
-            {
-              title: "ImageResizer",
-              description: "Customize your image size",
-            },
-            {
-              title: "OrientImage",
-              description: "Orient images accordingly",
-            },
-            {
-              title: "GrayScale",
-              description: "Convert Color images to grayscale",
-            },
-          ],
+          output: slashImageOperations,
         });
       }
       case "Fun": {
@@ -560,7 +534,24 @@ const controller = async (req, res) => {
       }
     }
   }
-
+  if (req.body?.name === "imagecompresser") {
+    const response = compresserResponse;
+    return res.status(200).json({
+      output: response,
+    });
+  }
+  if (req.body?.name === "pdfconverter") {
+    const response = pdfResponse;
+    return res.status(200).json({
+      output: response,
+    });
+  }
+  if (req.body?.name === "emojimagick") {
+    const response = animeResponse;
+    return res.status(200).json({
+      output: response,
+    });
+  }
   if (
     req.body?.handler?.type === "execution_handler" &&
     !req.body?.params?.messages
