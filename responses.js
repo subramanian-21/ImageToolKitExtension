@@ -560,7 +560,7 @@ const grayScaleResponse = {
   type: "form",
   title: "ImageToolKit",
   name: "grayscale",
-  hint: "Convert Color Images into Grayscale images\n*Upload images of < 1mb",
+  hint: "Convert Color Images into Grayscale images\n*Upload images of < 10mb",
   button_label: "Render",
   inputs: [
     {
