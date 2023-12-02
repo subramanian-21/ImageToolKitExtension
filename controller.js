@@ -20,6 +20,9 @@ const {
   twoInputs,
   joinResponse,
   pdfResultResponse,
+  actionConverterResponse,
+  actionResizerResponse,
+  actionCompresserResponse,
   funResponse,
   animeResponse,
   errorResponse,
@@ -29,6 +32,7 @@ const imageResize = require("./imageTools/imageResize");
 const joinImage = require("./imageTools/joinImages");
 
 const controller = async (req, res) => {
+  
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const images = req.body?.params?.form?.values?.pdfconverter?.files;
@@ -112,14 +116,24 @@ const controller = async (req, res) => {
     }
   }
 
-  if (req.body.params?.form?.values?.converter) {
+  if (
+    req.body.params?.form?.values?.converter ||
+    req.body.params?.form?.values.Action_Converter
+  ) {
     try {
-      const formatt = req.body.params.form?.values?.format.value;
+      let formatt, imageName;
+      if (req.body.params?.form?.values?.converter) {
+        formatt = req.body.params.form?.values?.format.value;
+        imageName = req.body.params.form?.values?.converter.files.name;
+      } else {
+        formatt = req.body.params?.form?.values.Action_Converter.value;
+        imageName = req.body.params?.messages?.list[0].file.name;
+      }
+
       const timestamp = new Date().getTime();
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
       const uniqueName = `${timestamp}_${randomNumber}.${formatt}`;
 
-      const imageName = req.body.params.form?.values?.converter.files.name;
       const format = imageName.split(".")[imageName.split(".").length - 1];
 
       if (
@@ -153,9 +167,15 @@ const controller = async (req, res) => {
     }
   }
 
-  if (req.body.params?.form?.values?.resize) {
+  if (req.body.params?.form?.values?.resize || req.body.params?.form?.name === 'Action_Resizer') {
     try {
-      const imageName = req.body.params.form?.values?.resize.files.name;
+      let imageName;
+      if (req.body.params?.form?.values?.resize) {
+        imageName = req.body.params.form?.values?.resize.files.name;
+      } else {
+        imageName = req.body.params?.messages?.list[0].file.name;
+      }
+      
       const format = imageName.split(".")[imageName.split(".").length - 1];
       const timestamp = new Date().getTime();
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
@@ -309,9 +329,17 @@ const controller = async (req, res) => {
     }
   }
 
-  if (req.body.params?.form?.values?.grayscale) {
+  if (
+    req.body.params?.form?.values?.grayscale ||
+    (req.body.name === "Grayscale" && req.body.type === "messageaction")
+  ) {
     try {
-      const imageName = req.body.params.form?.values?.grayscale.files.name;
+      let imageName;
+      if (req.body.params?.form?.values?.grayscale) {
+        imageName = req.body.params.form?.values?.grayscale.files.name;
+      } else {
+        imageName = req.body.params?.attachments[0].name;
+      }
       const format = imageName.split(".")[imageName.split(".").length - 1];
       const timestamp = new Date().getTime();
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
@@ -345,6 +373,26 @@ const controller = async (req, res) => {
     } catch (error) {
       console.log(error);
     }
+  }
+  if (req.body.name === "ImageConverter" &&
+      req.body.type === "messageaction"
+   ) {
+    res.status(200).json({
+      output: actionConverterResponse,
+    });
+  }
+  if (
+    req.body.name === "ImageCompresser" &&
+    req.body.type === "messageaction"
+  ) {
+    res.status(200).json({
+      output: actionCompresserResponse,
+    });
+  }
+  if (req.body.name === "ImageResizer" && req.body.type === "messageaction") {
+    res.status(200).json({
+      output: actionResizerResponse,
+    });
   }
 
   if (req.body.params?.form?.values?.dynamic_select) {
@@ -453,7 +501,7 @@ const controller = async (req, res) => {
     req.body?.handler?.type === "suggestion_handler" &&
     req.body.params.selections
   ) {
-    switch (req.body.params.selections[0].title) {
+    switch (req.body.params?.selections[0]?.title) {
       case "ImageOperations": {
         return res.status(200).json({
           output: [
@@ -505,8 +553,11 @@ const controller = async (req, res) => {
     }
   }
 
-  if (req.body?.handler?.type === "execution_handler") {
-    switch (req.body.params.selections[1].title) {
+  if (
+    req.body?.handler?.type === "execution_handler" &&
+    !req.body?.params?.messages
+  ) {
+    switch (req.body.params?.selections[1]?.title) {
       case "ImageCompresser": {
         const response = compresserResponse;
         res.status(200).json({

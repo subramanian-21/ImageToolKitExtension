@@ -1,8 +1,13 @@
 const sharp = require("sharp");
 const imageResize = async (req, name) => {
   try {
-    let width, height, reWidth, reHeight;
-  const imageUrl = req.body.params.form?.values?.resize.files.url;
+    let width, height, reWidth, reHeight,imageUrl;
+    if (req.body.params?.form?.values?.resize) {
+      imageUrl = req.body.params.form?.values?.resize.files.url;
+    } else {
+      imageUrl = req.body.params?.messages?.list[0].file.url;
+    }
+   
   if (req.body.params.form?.values?.resizes.value !== "0") {
     const resizes = req.body.params.form?.values?.resizes.value;
     width = Number(resizes.split("x")[0]);

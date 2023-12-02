@@ -1,7 +1,13 @@
 const sharp = require("sharp");
 const grayScale = async (req, name) => {
   try {
-    const imageUrl = req.body.params.form?.values?.grayscale.files.url;
+    let imageUrl;
+    if(req.body.params.form?.values?.grayscale){
+      imageUrl = req.body.params.form?.values?.grayscale.files.url;
+    }else{
+      imageUrl = req.body.params?.attachments[0].url
+    }
+    
 
     const response = await fetch(imageUrl);
 

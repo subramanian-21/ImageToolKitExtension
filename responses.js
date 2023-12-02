@@ -797,6 +797,7 @@ const twoInputs = (text, uName) => {
     ],
   };
 };
+
 const customWH = (text, uName) => {
   return {
     text: "# ImageToolKit",
@@ -825,7 +826,160 @@ const customWH = (text, uName) => {
     ],
   };
 };
+const actionConverterResponse = {
+  type: "form",
+  title: "ImageToolKit",
+  name: "Action_Converter",
+  hint: "Convert Image Format",
+  button_label: "Render",
+  inputs: [
+    {
+      name: "Action_Converter",
+      label: "Formats",
+      placeholder: "Choose from the list of options",
+      multiple: false,
+      mandatory: true,
+      type: "select",
+      options: [
+        {
+          value: "jpg",
+          label: "JPG",
+        },
+        {
+          value: "jpeg",
+          label: "JPEG",
+        },
+        {
+          value: "png",
+          label: "PNG",
+        },
+        {
+          value: "webp",
+          label: "WEBP",
+        },
+        {
+          value: "gif",
+          label: "GIF",
+        },
+      ],
+    },
+  ],
+  action: {
+    type: "invoke.function",
+    name: "imagetoolkitform",
+  },
+};
+const actionResizerResponse = {
+  type: "form",
+  title: "ImageToolKit",
+  name: "Action_Resizer",
+  hint: "Resize image",
+  button_label: "Render",
+  inputs: [
+    {
+      name: "resizes",
+      label: "sizes",
+      placeholder: "Standard sizes",
+      multiple: false,
+      mandatory: true,
+      type: "select",
+      options: [
+        {
+          value: "0",
+          label: "Custom Width & Height(Enter in the below fields)",
+        },
+        {
+          value: "1920x1080",
+          label: "1920x1080 - Full HD (1080p)",
+        },
+        {
+          value: "1280x720",
+          label: "1280x720 - HD (720p)",
+        },
+        {
+          value: "800x800",
+          label: "800x800 - Square (1:1)",
+        },
+        {
+          value: "150x150",
+          label: "150x150 - Thumbnail",
+        },
+        {
+          value: "1200x400",
+          label: "1200x400 - Banner/Header",
+        },
+        {
+          value: "600x400",
+          label: "600x400 - Email Newsletter",
+        },
+      ],
+    },
+    {
+      name: "width",
+      label: "Enter Custom Width",
+      placeholder: "Custom Width upto 4096",
+      min: "0",
+      max: "4096",
+      mandatory: false,
+      type: "number",
+    },
+    {
+      name: "height",
+      label: "Enter Custom Height",
+      placeholder: "Custom Height upto 2160",
+      min: "0",
+      max: "2160",
+      mandatory: false,
+      type: "number",
+    },
+    {
+      name: "lock",
+      label: "Lock aspect ratio",
+      value: false,
+      type: "toggle",
+    },
+  ],
+  action: {
+    type: "invoke.function",
+    name: "imagetoolkitform",
+  },
+};
 
+const actionCompresserResponse =  {
+  type: "form",
+  title: "ImageToolKit",
+  name: "Action_Compresser",
+  hint: "Compress image size without reducing the quality",
+  button_label: "Render",
+  inputs: [
+    {
+      name: "Action_Compresser",
+      label: "Select Quality of Image",
+      placeholder: "Choose Quality",
+      multiple: false,
+      mandatory: true,
+      type: "select",
+      options: [
+        {
+          value: "high",
+          label: "High",
+        },
+        {
+          value: "medium",
+          label: "Medium",
+        },
+        {
+          value: "low",
+          label: "Low",
+        },
+      ],
+    },
+  ],
+  action: {
+    type: "invoke.function",
+    name: "imagetoolkitform",
+  },
+};
 module.exports = {
   helpResponse,
   optionsResponse,
@@ -846,4 +1000,7 @@ module.exports = {
   memeResponse,
   memeCreatorResponse,
   unsupportedResponse,
+  actionResizerResponse,
+  actionCompresserResponse,
+  actionConverterResponse
 };
