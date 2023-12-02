@@ -13,6 +13,6 @@ app.use((req, res) => {
      res.sendFile(__dirname + "/staticAssets/index.html");
   }
 });
-app.listen(5001, "0.0.0.0",() => {
+app.listen(3000, "0.0.0.0",() => {
   console.log("Server@5001");
 });
