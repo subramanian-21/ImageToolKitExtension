@@ -32,7 +32,6 @@ const imageResize = require("./imageTools/imageResize");
 const joinImage = require("./imageTools/joinImages");
 
 const controller = async (req, res) => {
-  
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const images = req.body?.params?.form?.values?.pdfconverter?.files;
@@ -167,7 +166,10 @@ const controller = async (req, res) => {
     }
   }
 
-  if (req.body.params?.form?.values?.resize || req.body.params?.form?.name === 'Action_Resizer') {
+  if (
+    req.body.params?.form?.values?.resize ||
+    req.body.params?.form?.name === "Action_Resizer"
+  ) {
     try {
       let imageName;
       if (req.body.params?.form?.values?.resize) {
@@ -175,7 +177,7 @@ const controller = async (req, res) => {
       } else {
         imageName = req.body.params?.messages?.list[0].file.name;
       }
-      
+
       const format = imageName.split(".")[imageName.split(".").length - 1];
       const timestamp = new Date().getTime();
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
@@ -220,9 +222,17 @@ const controller = async (req, res) => {
     }
   }
 
-  if (req.body.params?.form?.values?.compresser) {
+  if (
+    req.body.params?.form?.values?.compresser ||
+    req.body.params?.form?.name === "Action_Compresser"
+  ) {
     try {
-      const imageName = req.body.params.form?.values?.compresser.files.name;
+      let imageName;
+      if (req.body.params?.form?.values?.compresser) {
+        imageName = req.body.params.form?.values?.compresser.files.name;
+      } else {
+        imageName = req.body.params?.messages?.list[0].file.name;
+      }
       const format = imageName
         .split(".")
         [imageName.split(".").length - 1].toLowerCase();
@@ -374,9 +384,7 @@ const controller = async (req, res) => {
       console.log(error);
     }
   }
-  if (req.body.name === "ImageConverter" &&
-      req.body.type === "messageaction"
-   ) {
+  if (req.body.name === "ImageConverter" && req.body.type === "messageaction") {
     res.status(200).json({
       output: actionConverterResponse,
     });

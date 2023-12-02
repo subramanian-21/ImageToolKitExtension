@@ -1,7 +1,13 @@
 const sharp = require("sharp");
 const compresser = async (req, uniqueName, format) => {
   try {
-    const imageUrl = req.body.params.form?.values?.compresser.files.url;
+    let imageUrl;
+    if (req.body.params?.form?.values?.resize) {
+      imageUrl = req.body.params.form?.values?.compresser.files.url;
+    } else {
+      imageUrl = req.body.params?.messages?.list[0].file.url;
+    }
+    
     const size = req.body.params.form?.values?.size.value;
     let quality;
     const response = await fetch(imageUrl);

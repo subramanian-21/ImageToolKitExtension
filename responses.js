@@ -953,7 +953,7 @@ const actionCompresserResponse =  {
   button_label: "Render",
   inputs: [
     {
-      name: "Action_Compresser",
+      name: "size",
       label: "Select Quality of Image",
       placeholder: "Choose Quality",
       multiple: false,
