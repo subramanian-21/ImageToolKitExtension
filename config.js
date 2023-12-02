@@ -1,3 +1,3 @@
-const url = "https://imagetoolkitextension-production.up.railway.app"
+const url = "https://imagetoolkitextension.onrender.com"
 
 module.exports = url

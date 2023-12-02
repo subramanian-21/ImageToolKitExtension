@@ -14,7 +14,7 @@ app.use((req, res) => {
      res.sendFile(__dirname + "/staticAssets/index.html");
   }
 });
-const port = process.env.PORT || 5001
-app.listen(port, "0.0.0.0",() => {
+
+app.listen(5001 ,() => {
   console.log("Server@5001");
 });
