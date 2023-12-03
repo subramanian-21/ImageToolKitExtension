@@ -6,7 +6,7 @@ const grayScale = async (req, name) => {
     if (req.body.params.form?.values?.grayscale) {
       imageUrl = req.body.params.form?.values?.grayscale.files.url;
     } else {
-      imageUrl = req.body.params?.attachments[0].file.url;
+      imageUrl = req.body.params?.attachments[0].url;
     }
 
     const response = await fetch(imageUrl);
