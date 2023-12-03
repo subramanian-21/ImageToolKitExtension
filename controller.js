@@ -254,11 +254,11 @@ const controller = async (req, res) => {
         const url = `${serverUrl}/${uniqueName}`;
         const download = `${serverUrl}/download/${uniqueName}`;
         const resp = ImageResponse(
-          "Image Compresser",
+          "Image Compressor",
           url,
           download,
-          "Image Compresser",
-          "compresser"
+          "Image Compressor",
+          "compressor"
         );
 
         res.status(200).json({
@@ -266,7 +266,7 @@ const controller = async (req, res) => {
         });
       } else {
         return res.status(200).json({
-          output: errorResponse("Image Compresser", "compresser"),
+          output: errorResponse("Image Compressor", "compressor"),
         });
       }
     } catch (error) {
@@ -394,7 +394,7 @@ const controller = async (req, res) => {
     });
   }
   if (
-    req.body.name === "ImageCompresser" &&
+    req.body.name === "ImageCompressor" &&
     req.body.type === "messageaction"
   ) {
     res.status(200).json({
@@ -544,7 +544,7 @@ const controller = async (req, res) => {
       }
     }
   }
-  if (req.body?.name === "compresser") {
+  if (req.body?.name === "compressor") {
     const response = compresserResponse;
     return res.status(200).json({
       output: response,
@@ -569,7 +569,7 @@ const controller = async (req, res) => {
     !req.body?.params?.messages
   ) {
     switch (req.body.params?.selections[1]?.title) {
-      case "ImageCompresser": {
+      case "ImageCompressor": {
         const response = compresserResponse;
         res.status(200).json({
           output: response,
@@ -652,7 +652,7 @@ const controller = async (req, res) => {
         });
         break;
       }
-      case "compresser": {
+      case "compressor": {
         const response = compresserResponse;
         res.status(200).json({
           output: response,

@@ -67,7 +67,7 @@ const optionsResponse = {
       options: [
         {
           value: "compresser",
-          label: "Image Compresser",
+          label: "Image Compressor",
         },
         {
           value: "pdfconverter",
@@ -983,7 +983,7 @@ const actionCompresserResponse =  {
 };
 const slashImageOperations = [
   {
-    title: "ImageCompresser",
+    title: "ImageCompressor",
     description: "Compress quality of image",
   },
   {
