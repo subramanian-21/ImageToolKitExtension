@@ -131,7 +131,7 @@ const funResponse = {
         },
         {
           value: "memeGenerator",
-          label: "Random Meme Generator",
+          label: "MakeMeLaugh",
         },
       ],
     },
