@@ -1,7 +1,6 @@
 const sharp = require("sharp");
 const compresser = async (req, uniqueName, format) => {
   try {
-    console.log(req.body.params?.messages?.list)
     let imageUrl;
     if (req.body.params?.form?.values?.compresser) {
       imageUrl = req.body.params.form?.values?.compresser?.files?.url;
