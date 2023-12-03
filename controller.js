@@ -70,6 +70,7 @@ const controller = async (req, res) => {
       console.log(error);
     }
   }
+
   if (req.body.params?.form?.values?.join) {
     try {
       const images = req.body?.params?.form?.values?.join?.files;
@@ -475,7 +476,6 @@ const controller = async (req, res) => {
         });
         break;
       }
-
       case "memeCreator": {
         const response = memeCreatorResponse;
         res.status(200).json({
@@ -483,7 +483,6 @@ const controller = async (req, res) => {
         });
         break;
       }
-
       case "resize": {
         const response = resizeResponse;
         res.status(200).json({
@@ -639,7 +638,6 @@ const controller = async (req, res) => {
         });
         break;
       }
-
     }
   }
 

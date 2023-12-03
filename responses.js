@@ -9,12 +9,17 @@ const helpResponse = {
     {
       type: "text",
       title: "# Getting Started",
-      data: "1. *Installation*:\n       - Install the extension from the Cliq Extension Marketplace\n\n2. *Accessing the Extension*:\n       - Search for ImageToolKit Bot in \nthe Searchbar \n       - Select it and a bot will appear in your conversations",
+      data: "1. *Installation*:\n       - Install the extension from the appropriate link\n\n2. *Accessing the Extension*:\n       - Search for ImageToolKit Bot in the Searchbar and Subscribe \n       - Select it and a bot will appear in your conversations",
+    },
+    {
+      type:"text",
+      title:"# Ways of Access",
+      data:'1. *Message Actions*: \n    a. Hover over an image and click on 3 dots(ellipsis).\n    b. Click More > Choose operation\n2. *Slash Commands*:\n   (a) "/imagetoolkit"  (b) "/compressor"\n   (c) "/pdfconverter"  (d) "/emojimagick"\n3. *Bot sub-actions*:\n    (a)ImageOperations (b)Fun (c)Help',
     },
     {
       type: "text",
       title: "# Usage",
-      data: "*Modules*:\n     A)Image Operations\n     B)Fun\n\n*1.Choose a Module*\n       - Click on the required module button displayed on the bottom of the bot.",
+      data: "*Bot Modules*:\n     A)Image Operations\n     B)Fun\n\n*1.Choose a Module*\n       - Click on the required module button displayed on the bottom of the bot.",
     },
     {
       type: "list",
@@ -51,6 +56,7 @@ const helpResponse = {
     },
   ],
 };
+
 const optionsResponse = {
   type: "form",
   title: "ImageToolkit",
@@ -218,6 +224,7 @@ const resizeResponse = {
     name: "imagetoolkitform",
   },
 };
+
 
 const converterResponse = {
   type: "form",
