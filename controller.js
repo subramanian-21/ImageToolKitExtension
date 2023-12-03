@@ -6,7 +6,9 @@ const pdfConverter = require("./imageTools/pdfConverter");
 const animeEmoji = require("./imageTools/animeEmoji");
 const memeCreator = require("./imageTools/memeCreator");
 const rotateImage = require("./imageTools/rotateImage");
+const memeGenerator = require("./imageTools/memeGenerator");
 const {
+  slashFunOperations,
   helpResponse,
   optionsResponse,
   converterResponse,
@@ -34,7 +36,6 @@ const imageResize = require("./imageTools/imageResize");
 const joinImage = require("./imageTools/joinImages");
 
 const controller = async (req, res) => {
-
   if (req.body.params?.form?.values?.pdfconverter) {
     try {
       const images = req.body?.params?.form?.values?.pdfconverter?.files;
@@ -406,10 +407,18 @@ const controller = async (req, res) => {
     });
   }
 
-  if (req.body.params?.form?.values?.dynamic_select) {
-    const response = await animeEmoji(
-      req.body.params.form?.values?.dynamic_select?.value
-    );
+  if (
+    req.body.params?.form?.values?.dynamic_select ||
+    (req.body.name === "emojimagick" && req.body.params.selections.length > 0)
+  ) {
+    let emotion;
+
+    if (req.body.params?.form?.values?.dynamic_select) {
+      emotion = req.body.params.form?.values?.dynamic_select?.value;
+    } else {
+      emotion = req.body.params.selections[0].title;
+    }
+    const response = await animeEmoji(emotion);
     res.status(200).json({
       output: response,
     });
@@ -482,6 +491,14 @@ const controller = async (req, res) => {
         });
         break;
       }
+      case "memeGenerator": {
+        const response = await memeGenerator();
+
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
     }
   }
   if (
@@ -511,7 +528,8 @@ const controller = async (req, res) => {
 
   if (
     req.body?.handler?.type === "suggestion_handler" &&
-    req.body.params.selections
+    req.body.params.selections &&
+    req.body.name !== "emojimagick"
   ) {
     switch (req.body.params?.selections[0]?.title) {
       case "ImageOperations": {
@@ -521,21 +539,12 @@ const controller = async (req, res) => {
       }
       case "Fun": {
         return res.status(200).json({
-          output: [
-            {
-              title: "AnimeEmojiGenerator",
-              description: "List of various image operations",
-            },
-            {
-              title: "MemeCreator",
-              description: "list of fun operations",
-            },
-          ],
+          output: slashFunOperations,
         });
       }
     }
   }
-  if (req.body?.name === "imagecompresser") {
+  if (req.body?.name === "compresser") {
     const response = compresserResponse;
     return res.status(200).json({
       output: response,
@@ -547,8 +556,10 @@ const controller = async (req, res) => {
       output: response,
     });
   }
-  if (req.body?.name === "emojimagick") {
-    const response = animeResponse;
+  if (
+    req.body?.name === "emojimagick" &&
+    req.body.params.selections.length === 0
+  ) {
     return res.status(200).json({
       output: slashEmoji,
     });
@@ -621,6 +632,14 @@ const controller = async (req, res) => {
         });
         break;
       }
+      case "MakeMeLaugh": {
+        const response = await memeGenerator();
+        res.status(200).json({
+          output: response,
+        });
+        break;
+      }
+
     }
   }
 

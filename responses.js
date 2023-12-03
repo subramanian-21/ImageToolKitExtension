@@ -109,7 +109,7 @@ const funResponse = {
   inputs: [
     {
       name: "options",
-      label: "Select Image operation",
+      label: "Select Fun operation",
       placeholder: "Choose from the list of options",
       multiple: false,
       mandatory: false,
@@ -122,6 +122,10 @@ const funResponse = {
         {
           value: "anime",
           label: "Anime Emoji Generator",
+        },
+        {
+          value: "memeGenerator",
+          label: "Random Meme Generator",
         },
       ],
     },
@@ -1054,6 +1058,22 @@ const slashEmoji = [
   },
 
 ]
+
+const slashFunOperations=[
+            
+  {
+    title: "MemeCreator",
+    description: "list of fun operations",
+  },
+  {
+    title: "MakeMeLaugh",
+    description: "Generate Random Redit meme",
+  },
+  {
+    title: "AnimeEmojiGenerator",
+    description: "List of various image operations",
+  },
+] 
 module.exports = {
   helpResponse,
   optionsResponse,
@@ -1067,6 +1087,7 @@ module.exports = {
   slashEmoji,
   twoInputs,
   resizeResponse,
+  slashFunOperations,
   pdfResultResponse,
   rotateResponse,
   funResponse,
