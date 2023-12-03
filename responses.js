@@ -1006,6 +1006,53 @@ const slashImageOperations = [
     title: "GrayScale",
     description: "Convert Color images to grayscale",
   },
+
+]
+
+const slashEmoji = [
+  {
+    title: "angry",
+  },
+  {
+    title: "calm-down",
+  },
+  {
+    title: "confused",
+  },
+  {
+    title: "dance",
+  },
+  {
+    title: "pre-exercise",
+  },
+  {
+    title: "happy",
+  },
+  {
+    title: "lunch-break-time",
+  },
+  {
+    title: "yes",
+  },
+  {
+    title: "misc",
+  },
+  {
+    title: "no",
+  },
+  {
+    title: "thinking",
+  },
+  {
+    title: "sad",
+  },
+  {
+    title: "smug",
+  },
+  {
+    title: "surprised",
+  },
+
 ]
 module.exports = {
   helpResponse,
@@ -1017,6 +1064,7 @@ module.exports = {
   joinResponse,
   errorResponse,
   pdfResponse,
+  slashEmoji,
   twoInputs,
   resizeResponse,
   pdfResultResponse,

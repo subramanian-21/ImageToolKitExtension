@@ -15,6 +15,7 @@ const {
   grayScaleResponse,
   pdfResponse,
   ImageResponse,
+  slashEmoji,
   rotateResponse,
   resizeResponse,
   twoInputs,
@@ -549,7 +550,7 @@ const controller = async (req, res) => {
   if (req.body?.name === "emojimagick") {
     const response = animeResponse;
     return res.status(200).json({
-      output: response,
+      output: slashEmoji,
     });
   }
   if (
