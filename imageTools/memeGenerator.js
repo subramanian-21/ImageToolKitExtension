@@ -10,7 +10,6 @@ const memeGenerator = async () => {
     const randomNumber = Math.floor(Math.random() * 25);
     const randomCat = Math.floor(Math.random() * 2);
     let meme;
-  
     if (randomCat) {
       meme = dankMemes[randomNumber]?.data?.preview?.images[0]?.source?.url;
     } else {
